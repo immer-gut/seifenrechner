@@ -43,6 +43,7 @@ const desktop = await evaluate(client, `(() => ({
   themeValue: document.querySelector('#themeSelect')?.value,
   themeOptions: [...document.querySelectorAll('#themeSelect option')].map((item) => item.value),
   themeAccent: getComputedStyle(document.body).getPropertyValue('--accent').trim(),
+  themeBg: getComputedStyle(document.body).getPropertyValue('--bg').trim(),
   priceFields: document.querySelectorAll('#ingredientPrice, #alkaliPricePerGram, #costPer100g, #totalCost').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 }))()`);
@@ -51,17 +52,20 @@ const themeFlow = await evaluate(client, `(() => {
   const select = document.querySelector('#themeSelect');
   const values = [...select.options].map((item) => item.value);
   const accents = {};
+  const backgrounds = {};
   for (const value of values) {
     select.value = value;
     select.dispatchEvent(new Event('change', { bubbles: true }));
     accents[value] = getComputedStyle(document.body).getPropertyValue('--accent').trim();
+    backgrounds[value] = getComputedStyle(document.body).getPropertyValue('--bg').trim();
   }
   return {
     values,
     selected: select.value,
     bodyTheme: document.body.dataset.theme,
     stored: localStorage.getItem('seifenrechner.theme.v1'),
-    accents
+    accents,
+    backgrounds
   };
 })()`);
 await navigate(client, appUrl);
@@ -252,7 +256,7 @@ client.close();
 const result = { desktop, themeFlow, persistedTheme, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, printLayout, printPageCount, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.7.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.8.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -263,6 +267,9 @@ if (desktop.themeValue !== "lotus" || desktop.themeOptions.join(",") !== "lotus,
 }
 if (new Set(Object.values(themeFlow.accents)).size !== 4 || themeFlow.selected !== "bergamotte" || themeFlow.stored !== "bergamotte") {
   throw new Error("Layout-Themen werden nicht eindeutig angewendet oder gespeichert.");
+}
+if (!Object.values(themeFlow.backgrounds).every((color) => colorLuminance(color) < 45)) {
+  throw new Error("Layout-Themen sind nicht durchgaengig dunkel.");
 }
 if (persistedTheme.selected !== "bergamotte" || persistedTheme.bodyTheme !== "bergamotte") {
   throw new Error("Layout-Thema bleibt nach Reload nicht erhalten.");
@@ -320,6 +327,20 @@ if (printLayout.ingredientRows !== 2 || printLayout.categoryRows !== 5 || printL
 }
 if (printLayout.hasPriceText || printPageCount !== 1 || printLayout.overflow > 0) {
   throw new Error("Druckansicht ist nicht preisfrei, einseitig oder layoutstabil.");
+}
+
+function colorLuminance(color) {
+  const hex = color.trim().match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    const value = hex[1];
+    const red = Number.parseInt(value.slice(0, 2), 16);
+    const green = Number.parseInt(value.slice(2, 4), 16);
+    const blue = Number.parseInt(value.slice(4, 6), 16);
+    return (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+  }
+  const parts = color.match(/\d+/g)?.slice(0, 3).map(Number) || [];
+  if (parts.length !== 3) return 255;
+  return (0.2126 * parts[0]) + (0.7152 * parts[1]) + (0.0722 * parts[2]);
 }
 
 async function createTarget() {

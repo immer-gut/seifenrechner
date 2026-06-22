@@ -1,88 +1,93 @@
 :root {
-  color-scheme: light;
-  --bg: #f6f7f4;
-  --surface: #ffffff;
-  --surface-muted: #eef2ec;
-  --text: #20241f;
-  --muted: #657061;
-  --line: #d8dfd4;
-  --accent: #2f6f5e;
-  --accent-strong: #214c41;
-  --accent-soft: #dcebe5;
-  --warn: #9a5b10;
-  --danger: #a23b34;
-  --shadow: 0 18px 40px rgba(32, 36, 31, 0.08);
-  --header-bg: rgba(255, 255, 255, 0.86);
-  --input-bg: #ffffff;
+  color-scheme: dark;
+  --bg: #111814;
+  --surface: #17211d;
+  --surface-muted: #1f2d27;
+  --text: #edf3ee;
+  --muted: #aab9ae;
+  --line: #314139;
+  --accent: #5fb899;
+  --accent-hover: #3f8b72;
+  --accent-strong: #a9e5d0;
+  --accent-soft: #243f35;
+  --warn: #e1a84f;
+  --danger: #c95851;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+  --header-bg: rgba(15, 22, 19, 0.92);
+  --input-bg: #101815;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body[data-theme="lotus"] {
-  --bg: #f8f4f6;
-  --surface: #fffdfd;
-  --surface-muted: #f1e9ed;
-  --text: #272225;
-  --muted: #74656b;
-  --line: #e2d4da;
-  --accent: #9a5f74;
-  --accent-strong: #6f3f52;
-  --accent-soft: #f0dfe7;
-  --warn: #906019;
-  --danger: #a23b4c;
-  --shadow: 0 18px 40px rgba(71, 47, 58, 0.09);
-  --header-bg: rgba(255, 250, 252, 0.9);
-  --input-bg: #fffefe;
+  --bg: #151015;
+  --surface: #201820;
+  --surface-muted: #2b202b;
+  --text: #f5ecf2;
+  --muted: #c8b6c1;
+  --line: #443242;
+  --accent: #d48ba8;
+  --accent-hover: #9d5a76;
+  --accent-strong: #ffd3e3;
+  --accent-soft: #4a2b3b;
+  --warn: #e5b35c;
+  --danger: #d06373;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+  --header-bg: rgba(19, 14, 19, 0.93);
+  --input-bg: #171117;
 }
 
 body[data-theme="oliven"] {
-  --bg: #f4f5ee;
-  --surface: #fffef8;
-  --surface-muted: #e9eddf;
-  --text: #22261c;
-  --muted: #65704f;
-  --line: #d8ddc8;
-  --accent: #66763a;
-  --accent-strong: #465325;
-  --accent-soft: #e1e8cc;
-  --warn: #8a5a13;
-  --danger: #9d3d35;
-  --shadow: 0 18px 40px rgba(47, 58, 31, 0.1);
-  --header-bg: rgba(255, 254, 248, 0.9);
-  --input-bg: #fffefb;
+  --bg: #11140e;
+  --surface: #1a1f15;
+  --surface-muted: #232b1b;
+  --text: #eef3e5;
+  --muted: #b5c0a4;
+  --line: #39452d;
+  --accent: #a1b75d;
+  --accent-hover: #687c35;
+  --accent-strong: #e0f0a7;
+  --accent-soft: #344222;
+  --warn: #ddb15b;
+  --danger: #c76056;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
+  --header-bg: rgba(15, 19, 12, 0.93);
+  --input-bg: #12170f;
 }
 
 body[data-theme="patschouli"] {
-  --bg: #f2efeb;
-  --surface: #fffdf9;
-  --surface-muted: #ece4db;
-  --text: #241f1b;
-  --muted: #706157;
-  --line: #dccfc4;
-  --accent: #6c4d3c;
-  --accent-strong: #3f2c24;
-  --accent-soft: #eadbd1;
-  --warn: #8b5417;
-  --danger: #94392f;
-  --shadow: 0 18px 40px rgba(51, 35, 26, 0.11);
-  --header-bg: rgba(255, 252, 247, 0.9);
-  --input-bg: #fffdfb;
+  --bg: #15110f;
+  --surface: #211a16;
+  --surface-muted: #2d241f;
+  --text: #f1ebe6;
+  --muted: #c3b2a6;
+  --line: #49382f;
+  --accent: #c28a68;
+  --accent-hover: #82583f;
+  --accent-strong: #f2c6a8;
+  --accent-soft: #463024;
+  --warn: #e0a951;
+  --danger: #c9584d;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.38);
+  --header-bg: rgba(18, 14, 12, 0.93);
+  --input-bg: #17120f;
 }
 
 body[data-theme="bergamotte"] {
-  --bg: #f7f8ef;
-  --surface: #fffffb;
-  --surface-muted: #edf2da;
-  --text: #22251d;
-  --muted: #647052;
-  --line: #d9e0c1;
-  --accent: #497861;
-  --accent-strong: #2d5544;
-  --accent-soft: #dcebd8;
-  --warn: #9a6410;
-  --danger: #a23b34;
-  --shadow: 0 18px 40px rgba(45, 80, 55, 0.09);
-  --header-bg: rgba(255, 255, 247, 0.9);
-  --input-bg: #fffffd;
+  --bg: #0f1511;
+  --surface: #172019;
+  --surface-muted: #1f2d22;
+  --text: #eef5ea;
+  --muted: #adc0ad;
+  --line: #304634;
+  --accent: #74bf89;
+  --accent-hover: #43825a;
+  --accent-strong: #c3efbc;
+  --accent-soft: #27452d;
+  --warn: #e2b24d;
+  --danger: #c95a50;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
+  --header-bg: rgba(13, 20, 15, 0.93);
+  --input-bg: #101811;
 }
 
 * {
@@ -121,7 +126,7 @@ button,
 
 button:hover,
 .file-button:hover {
-  background: var(--accent-strong);
+  background: var(--accent-hover);
 }
 
 button.secondary {

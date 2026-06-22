@@ -12,7 +12,7 @@ const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
 const THEME_KEY = "seifenrechner.theme.v1";
-const APP_VERSION = "1.7.0";
+const APP_VERSION = "1.8.0";
 const KOH_FROM_NAOH_FACTOR = 1.40272;
 const THEMES = ["lotus", "oliven", "patschouli", "bergamotte"];
 
