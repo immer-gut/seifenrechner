@@ -218,10 +218,10 @@ const printed = await client.send("Page.printToPDF", {
   printBackground: true,
   paperWidth: 11.69,
   paperHeight: 8.27,
-  marginTop: 0.47,
-  marginRight: 0.55,
-  marginBottom: 0.47,
-  marginLeft: 0.55
+  marginTop: 0.71,
+  marginRight: 0.79,
+  marginBottom: 0.71,
+  marginLeft: 0.79
 });
 const pdfText = Buffer.from(printed.data, "base64").toString("latin1");
 const printPageCount = (pdfText.match(/\/Type\s*\/Page\b/g) || []).length;
@@ -256,7 +256,7 @@ client.close();
 const result = { desktop, themeFlow, persistedTheme, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, printLayout, printPageCount, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.8.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.8.1") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
