@@ -1,0 +1,183 @@
+const port = process.env.CHROME_DEBUG_PORT || "9222";
+const appUrl = process.env.APP_URL || "http://127.0.0.1:8080";
+const endpoint = `http://127.0.0.1:${port}`;
+
+const target = await createTarget();
+const client = await connect(target.webSocketDebuggerUrl);
+const messages = [];
+
+client.on("Runtime.consoleAPICalled", (event) => {
+  messages.push({ type: "console", args: event.args.map((arg) => arg.value ?? arg.description).join(" ") });
+});
+client.on("Runtime.exceptionThrown", (event) => {
+  messages.push({ type: "exception", text: event.exceptionDetails.text });
+});
+
+await client.send("Runtime.enable");
+await client.send("Page.enable");
+await client.send("Emulation.setDeviceMetricsOverride", {
+  width: 1440,
+  height: 1000,
+  deviceScaleFactor: 1,
+  mobile: false
+});
+await navigate(client, appUrl);
+await evaluate(client, `localStorage.clear()`);
+await navigate(client, appUrl);
+await waitFor(client, `document.querySelectorAll('#ingredientsTable tr').length > 0`);
+
+const desktop = await evaluate(client, `(() => ({
+  title: document.title,
+  h1: document.querySelector('h1')?.innerText,
+  lye: document.querySelector('#lyeWithSuperfat')?.innerText,
+  cost: document.querySelector('#costPer100g')?.innerText,
+  rows: document.querySelectorAll('#ingredientsTable tr').length,
+  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+}))()`);
+
+await evaluate(client, `(() => {
+  const input = document.querySelector('#superfatPercent');
+  input.value = '10';
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+  return document.querySelector('#lyeWithSuperfat').innerText;
+})()`);
+
+const changedLye = await evaluate(client, `document.querySelector('#lyeWithSuperfat').innerText`);
+
+await client.send("Emulation.setDeviceMetricsOverride", {
+  width: 390,
+  height: 900,
+  deviceScaleFactor: 2,
+  mobile: true
+});
+await navigate(client, appUrl);
+await waitFor(client, `document.querySelector('h1')?.innerText === 'Seifenrechner'`);
+
+const mobile = await evaluate(client, `(() => ({
+  overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  h1: document.querySelector('h1')?.innerText,
+  widest: [...document.querySelectorAll('body *')]
+    .map((element) => ({
+      tag: element.tagName.toLowerCase(),
+      className: element.className,
+      id: element.id,
+      width: Math.round(element.getBoundingClientRect().width),
+      scrollWidth: element.scrollWidth
+    }))
+    .filter((item) => item.width > document.documentElement.clientWidth || item.scrollWidth > document.documentElement.clientWidth)
+    .slice(0, 8)
+}))()`);
+
+client.close();
+
+const result = { desktop, changedLye, mobile, messages };
+console.log(JSON.stringify(result, null, 2));
+
+if (desktop.title !== "Seifenrechner" || desktop.h1 !== "Seifenrechner") {
+  throw new Error("Seite wurde nicht korrekt geladen.");
+}
+if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1) {
+  throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
+}
+if (messages.some((message) => message.type === "exception")) {
+  throw new Error("Browser meldet JavaScript-Ausnahmen.");
+}
+if (desktop.overflow > 0 || mobile.overflow > 0) {
+  throw new Error("Layout erzeugt horizontales Ueberlaufen.");
+}
+
+async function createTarget() {
+  await waitForChrome();
+  let response = await fetch(`${endpoint}/json/new?${encodeURIComponent("about:blank")}`, { method: "PUT" });
+  if (!response.ok) {
+    response = await fetch(`${endpoint}/json/new?${encodeURIComponent("about:blank")}`);
+  }
+  if (!response.ok) {
+    throw new Error(`Chrome target konnte nicht erstellt werden: ${response.status}`);
+  }
+  return response.json();
+}
+
+async function waitForChrome() {
+  const started = Date.now();
+  while (Date.now() - started < 10000) {
+    try {
+      const response = await fetch(`${endpoint}/json/version`);
+      if (response.ok) return;
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+  }
+  throw new Error(`Chrome Debug-Port ${port} antwortet nicht.`);
+}
+
+function connect(webSocketDebuggerUrl) {
+  const socket = new WebSocket(webSocketDebuggerUrl);
+  let id = 0;
+  const pending = new Map();
+  const listeners = new Map();
+
+  socket.addEventListener("message", (message) => {
+    const payload = JSON.parse(message.data);
+    if (payload.id && pending.has(payload.id)) {
+      const { resolve, reject } = pending.get(payload.id);
+      pending.delete(payload.id);
+      if (payload.error) reject(new Error(payload.error.message));
+      else resolve(payload.result);
+      return;
+    }
+    if (payload.method && listeners.has(payload.method)) {
+      for (const listener of listeners.get(payload.method)) listener(payload.params || {});
+    }
+  });
+
+  return new Promise((resolve, reject) => {
+    socket.addEventListener("open", () => {
+      resolve({
+        send(method, params = {}) {
+          const commandId = ++id;
+          socket.send(JSON.stringify({ id: commandId, method, params }));
+          return new Promise((commandResolve, commandReject) => {
+            pending.set(commandId, { resolve: commandResolve, reject: commandReject });
+          });
+        },
+        on(method, listener) {
+          if (!listeners.has(method)) listeners.set(method, []);
+          listeners.get(method).push(listener);
+        },
+        close() {
+          socket.close();
+        }
+      });
+    });
+    socket.addEventListener("error", reject);
+  });
+}
+
+async function navigate(client, url) {
+  const loaded = new Promise((resolve) => client.on("Page.loadEventFired", resolve));
+  await client.send("Page.navigate", { url });
+  await loaded;
+}
+
+async function evaluate(client, expression) {
+  const result = await client.send("Runtime.evaluate", {
+    expression,
+    awaitPromise: true,
+    returnByValue: true
+  });
+  if (result.exceptionDetails) {
+    throw new Error(result.exceptionDetails.text);
+  }
+  return result.result.value;
+}
+
+async function waitFor(client, expression, timeoutMs = 5000) {
+  const started = Date.now();
+  while (Date.now() - started < timeoutMs) {
+    const ok = await evaluate(client, expression);
+    if (ok) return;
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  throw new Error(`Timeout beim Warten auf: ${expression}`);
+}

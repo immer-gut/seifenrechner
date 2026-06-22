@@ -1,0 +1,9 @@
+services:
+  seifenrechner:
+    build: .
+    image: seifenrechner:latest
+    container_name: seifenrechner
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+

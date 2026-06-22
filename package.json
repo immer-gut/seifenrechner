@@ -1,0 +1,10 @@
+{
+  "name": "seifenrechner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/calculator.test.mjs",
+    "verify:ui": "node scripts/verify-ui.mjs"
+  }
+}

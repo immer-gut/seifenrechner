@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seifenrechner</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Docker Webstack</p>
+        <h1>Seifenrechner</h1>
+      </div>
+      <nav class="toolbar" aria-label="Werkzeuge">
+        <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
+        <button id="exportRecipe" type="button" title="JSON exportieren">Export</button>
+        <label class="file-button" title="JSON importieren">
+          Import
+          <input id="importRecipe" type="file" accept="application/json">
+        </label>
+        <button id="printRecipe" type="button" title="Drucken">Druck</button>
+        <button id="resetRecipe" type="button" title="Zuruecksetzen">Reset</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <section class="panel recipe-panel" aria-labelledby="recipe-heading">
+        <div class="panel-title">
+          <h2 id="recipe-heading">Rezept</h2>
+          <span id="saveState" class="status-pill">Lokal</span>
+        </div>
+
+        <div class="form-grid compact">
+          <label>
+            Name
+            <input id="recipeName" type="text" autocomplete="off">
+          </label>
+          <label>
+            Verfahren
+            <select id="process">
+              <option>Kaltverfahren</option>
+              <option>Heissverfahren</option>
+              <option>OHP</option>
+            </select>
+          </label>
+          <label>
+            Lauge
+            <select id="alkaliType">
+              <option>NaOH</option>
+              <option>KOH</option>
+            </select>
+          </label>
+          <label>
+            Reinheit %
+            <input id="alkaliPurityPercent" type="number" min="1" max="100" step="0.1">
+          </label>
+          <label>
+            Ueberfettung %
+            <input id="superfatPercent" type="number" min="0" max="30" step="0.5">
+          </label>
+          <label>
+            Wasser % Fett
+            <input id="waterPercentOfFat" type="number" min="0" max="100" step="0.5">
+          </label>
+          <label>
+            Schwund %
+            <input id="shrinkagePercent" type="number" min="0" max="60" step="0.5">
+          </label>
+          <label>
+            Reifezeit Wochen
+            <input id="cureWeeks" type="number" min="0" step="1">
+          </label>
+          <label>
+            Laugenpreis EUR/g
+            <input id="alkaliPricePerGram" type="number" min="0" step="0.001">
+          </label>
+        </div>
+
+        <div class="saved-recipes">
+          <h3>Gespeicherte Rezepte</h3>
+          <div id="savedRecipes" class="saved-list"></div>
+        </div>
+      </section>
+
+      <section class="panel workspace-panel" aria-labelledby="ingredients-heading">
+        <div class="panel-title">
+          <h2 id="ingredients-heading">Zutaten</h2>
+          <span id="ingredientCount" class="status-pill">0</span>
+        </div>
+
+        <form id="ingredientForm" class="ingredient-form">
+          <input id="ingredientId" type="hidden">
+          <label>
+            Name
+            <input id="ingredientName" type="text" required autocomplete="off">
+          </label>
+          <label>
+            Kategorie
+            <select id="ingredientCategory">
+              <option value="fat">Fette & Oele</option>
+              <option value="liquid">Fluessigkeit</option>
+              <option value="fragrance">Duft</option>
+              <option value="color">Farbe</option>
+              <option value="additive">Sonstiges</option>
+            </select>
+          </label>
+          <label>
+            Gramm
+            <input id="ingredientWeight" type="number" min="0" step="0.1" required>
+          </label>
+          <label>
+            SAP NaOH
+            <input id="ingredientSap" type="number" min="0" step="0.001">
+          </label>
+          <label>
+            EUR/g
+            <input id="ingredientPrice" type="number" min="0" step="0.001">
+          </label>
+          <div class="form-actions">
+            <button type="submit">Zutat speichern</button>
+            <button id="clearIngredient" type="button" class="secondary">Neu</button>
+          </div>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Zutat</th>
+                <th>Kategorie</th>
+                <th>g</th>
+                <th>SAP</th>
+                <th>EUR/g</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="ingredientsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel result-panel" aria-labelledby="result-heading">
+        <div class="panel-title">
+          <h2 id="result-heading">Ergebnis</h2>
+          <span id="alkaliBadge" class="status-pill">NaOH</span>
+        </div>
+
+        <div class="metrics">
+          <article class="metric important">
+            <span>Lauge mit Ueberfettung</span>
+            <strong id="lyeWithSuperfat">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Lauge ohne Ueberfettung</span>
+            <strong id="lyeWithoutSuperfat">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Zielfluessigkeit</span>
+            <strong id="targetLiquid">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Ist-Fluessigkeit</span>
+            <strong id="actualLiquid">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Rohmasse</span>
+            <strong id="rawMass">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Seifenmasse nach Schwund</span>
+            <strong id="curedMass">0 g</strong>
+          </article>
+          <article class="metric">
+            <span>Gesamtkosten</span>
+            <strong id="totalCost">0 EUR</strong>
+          </article>
+          <article class="metric">
+            <span>Kosten pro 100 g</span>
+            <strong id="costPer100g">0 EUR</strong>
+          </article>
+        </div>
+
+        <div class="summary">
+          <h3>Kategorien</h3>
+          <div id="categorySummary" class="category-summary"></div>
+        </div>
+
+        <div class="warnings">
+          <h3>Hinweise</h3>
+          <ul id="warningsList"></ul>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
