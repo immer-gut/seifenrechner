@@ -3,7 +3,7 @@ import test from "node:test";
 import { calculateRecipe } from "../public/calculator.js";
 import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "../public/legacy-data.js";
 
-test("calculates NaOH recipe with superfat, water, shrinkage and cost", () => {
+test("calculates NaOH recipe with superfat, water and shrinkage", () => {
   const result = calculateRecipe({
     name: "Test",
     superfatPercent: 8,
@@ -11,11 +11,10 @@ test("calculates NaOH recipe with superfat, water, shrinkage and cost", () => {
     shrinkagePercent: 10,
     alkaliType: "NaOH",
     alkaliPurityPercent: 100,
-    alkaliPricePerGram: 0.02,
     ingredients: [
-      { name: "Olive", category: "fat", weight: 500, sapNaoh: 0.134, pricePerGram: 0.01 },
-      { name: "Kokos", category: "fat", weight: 500, sapNaoh: 0.183, pricePerGram: 0.01 },
-      { name: "Wasser", category: "liquid", weight: 350, pricePerGram: 0 }
+      { name: "Olive", category: "fat", weight: 500, sapNaoh: 0.134 },
+      { name: "Kokos", category: "fat", weight: 500, sapNaoh: 0.183 },
+      { name: "Wasser", category: "liquid", weight: 350 }
     ]
   });
 
@@ -25,8 +24,6 @@ test("calculates NaOH recipe with superfat, water, shrinkage and cost", () => {
   assert.equal(result.lyeWithSuperfat, 145.82);
   assert.equal(result.rawMass, 1495.82);
   assert.equal(result.curedMass, 1346.24);
-  assert.equal(result.totalCost, 12.92);
-  assert.equal(result.costPer100g, 0.96);
 });
 
 test("converts NaOH SAP to KOH and accounts for purity", () => {
@@ -37,9 +34,8 @@ test("converts NaOH SAP to KOH and accounts for purity", () => {
     shrinkagePercent: 0,
     alkaliType: "KOH",
     alkaliPurityPercent: 90,
-    alkaliPricePerGram: 0,
     ingredients: [
-      { name: "Oel", category: "fat", weight: 100, sapNaoh: 0.1, pricePerGram: 0 }
+      { name: "Oel", category: "fat", weight: 100, sapNaoh: 0.1 }
     ]
   });
 
@@ -51,7 +47,7 @@ test("warns about missing fat SAP values", () => {
   const result = calculateRecipe({
     name: "Warnung",
     ingredients: [
-      { name: "Mystery", category: "fat", weight: 100, sapNaoh: 0, pricePerGram: 0 }
+      { name: "Mystery", category: "fat", weight: 100, sapNaoh: 0 }
     ]
   });
 
@@ -65,7 +61,6 @@ test("calculates imported legacy recipes close to old exports", () => {
   assert.equal(patschouli.lyeWithoutSuperfat, 139.23);
   assert.equal(patschouli.lyeWithSuperfat, 132.27);
   assert.equal(patschouli.curedMass, 1162.18);
-  assert.equal(patschouli.totalCost, 12.57);
 
   assert.equal(milchHonig.lyeWithoutSuperfat, 152.18);
   assert.equal(milchHonig.lyeWithSuperfat, 136.96);
@@ -74,6 +69,8 @@ test("calculates imported legacy recipes close to old exports", () => {
 
 test("imports all recipes from the legacy data export", () => {
   assert.equal(LEGACY_RECIPES.length, 18);
-  assert.equal(LEGACY_INGREDIENTS.length, 149);
+  assert.equal(LEGACY_INGREDIENTS.length, 133);
   assert.equal(LEGACY_INGREDIENTS.some((item) => item.name === "Olivenöl"), true);
+  assert.equal(LEGACY_INGREDIENTS.filter((item) => item.name === "Palmfett").length, 1);
+  assert.equal(LEGACY_INGREDIENTS.some((item) => item.name === "Palmöl"), false);
 });

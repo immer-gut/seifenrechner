@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 
@@ -20,14 +21,22 @@ def main():
     recipe_items = load_json("tbl_Rezept.json")
     ingredients = load_json("tbl_Zt.json")
 
-    ingredients_by_id = {item["id_ZT"]: item for item in ingredients}
+    canonical_by_key = {}
+    canonical_by_id = {}
+    for item in ingredients:
+        mapped = map_inventory_item(item)
+        key = canonical_key(mapped)
+        if key not in canonical_by_key:
+            canonical_by_key[key] = mapped
+        canonical_by_id[item["id_ZT"]] = canonical_by_key[key]
+
     items_by_recipe = {}
     for item in recipe_items:
         items_by_recipe.setdefault(item["id_RN"], []).append(item)
 
-    legacy_ingredients = [map_inventory_item(item) for item in ingredients]
+    legacy_ingredients = list(canonical_by_key.values())
     legacy_recipes = [
-        map_recipe(recipe, items_by_recipe.get(recipe["id_RN"], []), ingredients_by_id)
+        map_recipe(recipe, items_by_recipe.get(recipe["id_RN"], []), canonical_by_id)
         for recipe in recipes
     ] + extra_excel_recipes()
 
@@ -47,12 +56,16 @@ def load_json(name):
 
 
 def map_inventory_item(item):
+    name = item.get("Name_ZT") or "Zutat"
+    category = CATEGORY_MAP.get(item.get("Index_ZT"), "additive")
+    if category == "fat" and normalize_name(name) in {"palmol", "palmoel", "palm oel"}:
+        name = "Palmfett"
+
     return {
         "legacyId": item["id_ZT"],
-        "name": item.get("Name_ZT") or "Zutat",
-        "category": CATEGORY_MAP.get(item.get("Index_ZT"), "additive"),
-        "sapNaoh": num(item.get("SAP_NaOH")),
-        "pricePerGram": num(item.get("Preis_pg_ZT")),
+        "name": name,
+        "category": category,
+        "sapNaoh": 0.156 if category == "fat" and name == "Palmfett" else num(item.get("SAP_NaOH")),
         "inci": item.get("INCI_ZT") or "",
         "manufacturer": clean_placeholder(item.get("Hersteller_ZT")),
         "productName": clean_placeholder(item.get("Produktname_ZT")),
@@ -69,16 +82,15 @@ def map_recipe(recipe, recipe_items, ingredients_by_id):
     items = []
     for item in sorted(recipe_items, key=lambda row: row.get("id_R", 0)):
         ingredient = ingredients_by_id.get(item.get("id_ZT"), {})
-        category = CATEGORY_MAP.get(item.get("Index_ZT") or ingredient.get("Index_ZT"), "additive")
+        category = CATEGORY_MAP.get(item.get("Index_ZT"), ingredient.get("category", "additive"))
         items.append(
             {
                 "id": f"legacy-{recipe['id_RN']}-{item.get('id_R')}",
-                "legacyIngredientId": item.get("id_ZT"),
-                "name": ingredient.get("Name_ZT") or f"Zutat {item.get('id_ZT')}",
+                "legacyIngredientId": ingredient.get("legacyId") or item.get("id_ZT"),
+                "name": ingredient.get("name") or f"Zutat {item.get('id_ZT')}",
                 "category": category,
                 "weight": num(item.get("g_ZT")),
-                "sapNaoh": num(ingredient.get("SAP_NaOH")) if category == "fat" else 0,
-                "pricePerGram": num(ingredient.get("Preis_pg_ZT")),
+                "sapNaoh": num(ingredient.get("sapNaoh")) if category == "fat" else 0,
             }
         )
 
@@ -94,9 +106,8 @@ def map_recipe(recipe, recipe_items, ingredients_by_id):
         "superfatPercent": num(recipe.get("\u00dcberfettung")),
         "waterPercentOfFat": 35,
         "shrinkagePercent": num(recipe.get("Schwund")),
-        "alkaliType": "KOH" if "koh" in str(lye.get("Name_ZT") or "").lower() else "NaOH",
+        "alkaliType": "KOH" if "koh" in str(lye.get("name") or "").lower() else "NaOH",
         "alkaliPurityPercent": 100,
-        "alkaliPricePerGram": num(lye.get("Preis_pg_ZT")),
         "ingredients": items,
     }
 
@@ -117,6 +128,27 @@ def num(value):
         return 0
 
 
+def canonical_key(item):
+    return f"{item['category']}|{normalize_name(item['name'])}"
+
+
+def normalize_name(value):
+    text = (
+        str(value)
+        .lower()
+        .replace("ä", "ae")
+        .replace("ö", "oe")
+        .replace("ü", "ue")
+        .replace("ß", "ss")
+        .replace("\u00a0", " ")
+        .replace("/", " ")
+        .replace("(", " ")
+        .replace(")", " ")
+        .replace("-", " ")
+    )
+    return re.sub(r"[^a-z0-9]+", " ", text).strip()
+
+
 def extra_excel_recipes():
     return [
         {
@@ -133,14 +165,13 @@ def extra_excel_recipes():
             "shrinkagePercent": 15,
             "alkaliType": "NaOH",
             "alkaliPurityPercent": 100,
-            "alkaliPricePerGram": 0.00551666,
             "ingredients": [
-                {"id": "legacy-excel-71-koenigsblau", "legacyIngredientId": None, "name": "Koenigsblau", "category": "color", "weight": 1, "sapNaoh": 0, "pricePerGram": 0.05},
-                {"id": "legacy-excel-71-sonnenblume", "legacyIngredientId": None, "name": "Sonnenblumenoel", "category": "fat", "weight": 333, "sapNaoh": 0.137, "pricePerGram": 0},
-                {"id": "legacy-excel-71-olive", "legacyIngredientId": None, "name": "Olivenoel", "category": "fat", "weight": 333, "sapNaoh": 0.136, "pricePerGram": 0},
-                {"id": "legacy-excel-71-kokos", "legacyIngredientId": None, "name": "Kokosnussfett", "category": "fat", "weight": 333, "sapNaoh": 0.184, "pricePerGram": 0},
-                {"id": "legacy-excel-71-wasser", "legacyIngredientId": None, "name": "Leitungswasser", "category": "liquid", "weight": 350, "sapNaoh": 0, "pricePerGram": 0.0000022},
-                {"id": "legacy-excel-71-kokosflocken", "legacyIngredientId": None, "name": "Kokosflocken", "category": "additive", "weight": 1, "sapNaoh": 0, "pricePerGram": 0.01},
+                {"id": "legacy-excel-71-koenigsblau", "legacyIngredientId": None, "name": "Koenigsblau", "category": "color", "weight": 1, "sapNaoh": 0},
+                {"id": "legacy-excel-71-sonnenblume", "legacyIngredientId": None, "name": "Sonnenblumenoel", "category": "fat", "weight": 333, "sapNaoh": 0.137},
+                {"id": "legacy-excel-71-olive", "legacyIngredientId": None, "name": "Olivenoel", "category": "fat", "weight": 333, "sapNaoh": 0.136},
+                {"id": "legacy-excel-71-kokos", "legacyIngredientId": None, "name": "Kokosnussfett", "category": "fat", "weight": 333, "sapNaoh": 0.184},
+                {"id": "legacy-excel-71-wasser", "legacyIngredientId": None, "name": "Leitungswasser", "category": "liquid", "weight": 350, "sapNaoh": 0},
+                {"id": "legacy-excel-71-kokosflocken", "legacyIngredientId": None, "name": "Kokosflocken", "category": "additive", "weight": 1, "sapNaoh": 0},
             ],
         }
     ]

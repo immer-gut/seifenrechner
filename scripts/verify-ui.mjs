@@ -32,32 +32,26 @@ const desktop = await evaluate(client, `(() => ({
   title: document.title,
   h1: document.querySelector('h1')?.innerText,
   lye: document.querySelector('#lyeWithSuperfat')?.innerText,
-  cost: document.querySelector('#costPer100g')?.innerText,
   rows: document.querySelectorAll('#ingredientsTable tr').length,
   savedRecipes: document.querySelectorAll('#savedRecipes .saved-item').length,
   version: document.querySelector('#appVersion')?.innerText,
   catalogOptions: document.querySelectorAll('#ingredientPreset option').length,
+  priceFields: document.querySelectorAll('#ingredientPrice, #alkaliPricePerGram, #costPer100g, #totalCost').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 }))()`);
 
-const palmfettValidation = await evaluate(client, `(() => {
+const palmfettPreset = await evaluate(client, `(() => {
   const preset = document.querySelector('#ingredientPreset');
   const option = [...preset.options].find((item) => item.textContent.includes('Palmfett'));
   preset.value = option.value;
   preset.dispatchEvent(new Event('change', { bubbles: true }));
   document.querySelector('#ingredientWeight').value = '1000';
-  const price = document.querySelector('#ingredientPrice');
-  const before = {
-    value: price.value,
-    step: price.step,
-    valid: price.checkValidity(),
-    message: price.validationMessage
-  };
   document.querySelector('#ingredientForm').requestSubmit();
   const names = [...document.querySelectorAll('#ingredientsTable tr td:first-child')]
     .map((cell) => cell.textContent.trim());
   return {
-    before,
+    optionCount: [...preset.options].filter((item) => item.textContent.includes('Palmfett')).length,
+    hasPalmOel: [...preset.options].some((item) => item.textContent.includes('Palmöl')),
     hasPalmfett: names.includes('Palmfett'),
     rows: names.length
   };
@@ -98,14 +92,17 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, palmfettValidation, changedLye, mobile, messages };
+const result = { desktop, palmfettPreset, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.0.5") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.1.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
-if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 150) {
+if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
   throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
+}
+if (desktop.priceFields !== 0) {
+  throw new Error("Preisfelder sind noch sichtbar.");
 }
 if (messages.some((message) => message.type === "exception")) {
   throw new Error("Browser meldet JavaScript-Ausnahmen.");
@@ -113,13 +110,8 @@ if (messages.some((message) => message.type === "exception")) {
 if (desktop.overflow > 0 || mobile.overflow > 0) {
   throw new Error("Layout erzeugt horizontales Ueberlaufen.");
 }
-if (
-  palmfettValidation.before.value !== "0.00149" ||
-  palmfettValidation.before.step !== "0.00001" ||
-  !palmfettValidation.before.valid ||
-  !palmfettValidation.hasPalmfett
-) {
-  throw new Error("Palmfett mit 0,00149 EUR/g kann nicht gespeichert werden.");
+if (palmfettPreset.optionCount !== 1 || palmfettPreset.hasPalmOel || !palmfettPreset.hasPalmfett) {
+  throw new Error("Palmfett ist nicht eindeutig im bereinigten Katalog.");
 }
 
 async function createTarget() {

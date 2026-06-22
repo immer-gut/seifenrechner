@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.0.5</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.1.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -72,10 +72,6 @@
             Reifezeit Wochen
             <input id="cureWeeks" type="number" min="0" step="1">
           </label>
-          <label>
-            Laugenpreis EUR/g
-            <input id="alkaliPricePerGram" type="number" min="0" step="0.00001">
-          </label>
         </div>
 
         <div class="saved-recipes">
@@ -120,10 +116,6 @@
             SAP NaOH
             <input id="ingredientSap" type="number" min="0" step="0.001">
           </label>
-          <label>
-            EUR/g
-            <input id="ingredientPrice" type="number" min="0" step="0.00001">
-          </label>
           <div class="form-actions">
             <button type="submit">Zutat speichern</button>
             <button id="clearIngredient" type="button" class="secondary">Neu</button>
@@ -138,7 +130,6 @@
                 <th>Kategorie</th>
                 <th>g</th>
                 <th>SAP</th>
-                <th>EUR/g</th>
                 <th></th>
               </tr>
             </thead>
@@ -177,14 +168,6 @@
           <article class="metric">
             <span>Seifenmasse nach Schwund</span>
             <strong id="curedMass">0 g</strong>
-          </article>
-          <article class="metric">
-            <span>Gesamtkosten</span>
-            <strong id="totalCost">0 EUR</strong>
-          </article>
-          <article class="metric">
-            <span>Kosten pro 100 g</span>
-            <strong id="costPer100g">0 EUR</strong>
           </article>
         </div>
 

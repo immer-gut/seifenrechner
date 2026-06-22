@@ -4,7 +4,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Aloe Vera Butter",
     "category": "fat",
     "sapNaoh": 0.18,
-    "pricePerGram": 0.0,
     "inci": "Cocos Nucifera & Aloe Barbadensis",
     "manufacturer": "",
     "productName": "",
@@ -19,7 +18,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Aloeextrakt, Aloe Vera \u00d6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Glycine Soja & Aloe Barbadensis",
     "manufacturer": "",
     "productName": "",
@@ -34,7 +32,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Andirobasamen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.14,
-    "pricePerGram": 0.0,
     "inci": "Carapa Guianensis",
     "manufacturer": "",
     "productName": "",
@@ -49,7 +46,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Aprikosenkernbutter",
     "category": "fat",
     "sapNaoh": 0.097,
-    "pricePerGram": 0.0,
     "inci": "Prunus Armeniaca",
     "manufacturer": "",
     "productName": "",
@@ -64,7 +60,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Aprikosenkern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Prunus Armeniaca",
     "manufacturer": "",
     "productName": "",
@@ -79,7 +74,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Argane\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "Argania Spinosa",
     "manufacturer": "",
     "productName": "",
@@ -94,7 +88,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Avocadobutter",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Persea Gratissima",
     "manufacturer": "",
     "productName": "",
@@ -109,7 +102,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Avocado\u00f6l",
     "category": "fat",
     "sapNaoh": 0.133,
-    "pricePerGram": 0.0,
     "inci": "Persea Gratissima",
     "manufacturer": "",
     "productName": "",
@@ -124,7 +116,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Babassu\u00f6l",
     "category": "fat",
     "sapNaoh": 0.175,
-    "pricePerGram": 0.0,
     "inci": "Orbignya Oleifera",
     "manufacturer": "",
     "productName": "",
@@ -139,7 +130,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Baobab\u00f6l (Affenbrotbaum)",
     "category": "fat",
     "sapNaoh": 0.112,
-    "pricePerGram": 0.0,
     "inci": "Adansonia Digitata",
     "manufacturer": "",
     "productName": "",
@@ -154,7 +144,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "B\u00e4rentalg",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.0,
     "inci": "Adeps Ursinus",
     "manufacturer": "",
     "productName": "",
@@ -169,7 +158,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Baumwollsaat\u00f6l",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Gossypium",
     "manufacturer": "",
     "productName": "",
@@ -184,7 +172,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Bienenwachs (gebleicht)",
     "category": "fat",
     "sapNaoh": 0.068,
-    "pricePerGram": 0.0,
     "inci": "Cera Alba",
     "manufacturer": "",
     "productName": "",
@@ -199,7 +186,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Bienenwachs (gelb)",
     "category": "fat",
     "sapNaoh": 0.067,
-    "pricePerGram": 0.0,
     "inci": "Cera Flava",
     "manufacturer": "",
     "productName": "",
@@ -214,7 +200,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Boretsch\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Borago Officinalis",
     "manufacturer": "",
     "productName": "",
@@ -229,7 +214,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Bucheckern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Fagus Sylvatica",
     "manufacturer": "",
     "productName": "",
@@ -244,7 +228,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Butter, Kuh",
     "category": "fat",
     "sapNaoh": 0.164,
-    "pricePerGram": 0.0,
     "inci": "Butyrum (u. U. mit dem Zusatz \"Bovis\")",
     "manufacturer": "",
     "productName": "",
@@ -259,7 +242,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Butterschmalz, Kuh (auch Ghee)",
     "category": "fat",
     "sapNaoh": 0.162,
-    "pricePerGram": 0.0,
     "inci": "Butyrum (u. U. mit dem Zusatz \"Bovis\")",
     "manufacturer": "",
     "productName": "",
@@ -274,7 +256,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Butterschmalz, Ziege",
     "category": "fat",
     "sapNaoh": 0.167,
-    "pricePerGram": 0.0,
     "inci": "Butyrum (u. U. mit dem Zusatz \"Caprinus\")",
     "manufacturer": "",
     "productName": "",
@@ -289,7 +270,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Calophyllum\u00f6l (Tamanu-/Foraha\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.185,
-    "pricePerGram": 0.0,
     "inci": "Calophyllum Tacamahaca (bot. C. Inophyllum)",
     "manufacturer": "",
     "productName": "",
@@ -304,7 +284,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Camellia\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "Camelia Sasanqua",
     "manufacturer": "",
     "productName": "",
@@ -319,7 +298,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Candelilla Wachs",
     "category": "fat",
     "sapNaoh": 0.036,
-    "pricePerGram": 0.0,
     "inci": "Cera Candelilla (bot. Euphorbia Cerifera)",
     "manufacturer": "",
     "productName": "",
@@ -334,7 +312,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Canola\u00f6l (ein besonderes Raps\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.123,
-    "pricePerGram": 0.0,
     "inci": "Canola",
     "manufacturer": "",
     "productName": "",
@@ -349,7 +326,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Carnauba Wachs",
     "category": "fat",
     "sapNaoh": 0.057,
-    "pricePerGram": 0.0,
     "inci": "Cera Carnauba (bot. Copernicia Cerifera)",
     "manufacturer": "",
     "productName": "",
@@ -364,7 +340,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Cashewnuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Anacardium Occidentale",
     "manufacturer": "",
     "productName": "",
@@ -379,7 +354,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Chaulmoogra",
     "category": "fat",
     "sapNaoh": 0.152,
-    "pricePerGram": 0.0,
     "inci": "Taraktogenos Kurzii",
     "manufacturer": "",
     "productName": "",
@@ -394,7 +368,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Distel\u00f6l (auch Saflor\u00f6l, F\u00e4rberdistel\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.00235555,
     "inci": "Carthamus Tinctorius",
     "manufacturer": "EUCO GmbH",
     "productName": "Distel\u00f6l",
@@ -409,7 +382,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Emu\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "Dromiceius",
     "manufacturer": "",
     "productName": "",
@@ -424,7 +396,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Erdnuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Arachis Hypogaea",
     "manufacturer": "",
     "productName": "",
@@ -439,7 +410,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Fischbohnen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.12,
-    "pricePerGram": 0.0,
     "inci": "Tephrosia vogelii",
     "manufacturer": "",
     "productName": "",
@@ -454,7 +424,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "G\u00e4nsefett",
     "category": "fat",
     "sapNaoh": 0.131,
-    "pricePerGram": 0.0,
     "inci": "Adeps Anserinus",
     "manufacturer": "",
     "productName": "",
@@ -469,7 +438,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Hagebuttenkern\u00f6l (auch Wildrosen\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.0,
     "inci": "Rosa Canina, Rosa Mosqueta (je nach Rose)",
     "manufacturer": "",
     "productName": "",
@@ -484,7 +452,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Hanfbutter",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Cannabis Sativa & Hydrogenated Vegetable Oil",
     "manufacturer": "",
     "productName": "",
@@ -499,7 +466,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Hanf\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "Cannabis Sativa",
     "manufacturer": "",
     "productName": "",
@@ -514,7 +480,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Haselnuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Corylus Americana",
     "manufacturer": "",
     "productName": "",
@@ -529,7 +494,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Hirschtalg",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Adeps Cervinum",
     "manufacturer": "",
     "productName": "",
@@ -544,7 +508,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "H\u00fchnerfett",
     "category": "fat",
     "sapNaoh": 0.142,
-    "pricePerGram": 0.0,
     "inci": "Adeps Gallinaceus",
     "manufacturer": "",
     "productName": "",
@@ -559,7 +522,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Illipe Butter (Shorea Butter)",
     "category": "fat",
     "sapNaoh": 0.132,
-    "pricePerGram": 0.0,
     "inci": "Shorea Stenoptera",
     "manufacturer": "",
     "productName": "",
@@ -574,7 +536,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Jojoba",
     "category": "fat",
     "sapNaoh": 0.066,
-    "pricePerGram": 0.0,
     "inci": "Buxus Chinensis",
     "manufacturer": "",
     "productName": "",
@@ -589,7 +550,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kaffeebohnen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.13,
-    "pricePerGram": 0.0,
     "inci": "Coffea Arabica",
     "manufacturer": "",
     "productName": "",
@@ -604,7 +564,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kakaobutter",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0204,
     "inci": "Theobroma Cacao",
     "manufacturer": "",
     "productName": "Kakaobutter",
@@ -619,7 +578,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kapoksaat\u00f6l (Kapok\u00f6l, Java Cotton Oil)",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "(bot. Ceiba Pentandra)",
     "manufacturer": "",
     "productName": "",
@@ -634,7 +592,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Knochen\u00f6l (Klauen\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.0,
     "inci": "Bubulum",
     "manufacturer": "",
     "productName": "",
@@ -649,7 +606,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kokosnussfett",
     "category": "fat",
     "sapNaoh": 0.184,
-    "pricePerGram": 0.00236,
     "inci": "Cocos Nucifera Oil",
     "manufacturer": "",
     "productName": "Kokosfett",
@@ -664,7 +620,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kokum Butter",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Garcinia Indica",
     "manufacturer": "",
     "productName": "",
@@ -679,7 +634,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kukui Nuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "Aleurites Moluccana",
     "manufacturer": "",
     "productName": "",
@@ -694,7 +648,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "K\u00fcrbiskern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "Cucurbita Pepo",
     "manufacturer": "",
     "productName": "",
@@ -709,7 +662,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lanolin (Wollfett)",
     "category": "fat",
     "sapNaoh": 0.075,
-    "pricePerGram": 0.0,
     "inci": "Lanolin",
     "manufacturer": "",
     "productName": "",
@@ -724,7 +676,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lebertran (auch (Fisch-)Leber\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.133,
-    "pricePerGram": 0.0,
     "inci": "Gadi Iecur",
     "manufacturer": "",
     "productName": "",
@@ -739,7 +690,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Leindotter\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Camelina Sativa",
     "manufacturer": "",
     "productName": "",
@@ -754,7 +704,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lein\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.00866666,
     "inci": "Linum Usitatissimum",
     "manufacturer": "Schneekoppe Handelsgesellschagt mbH",
     "productName": "Speise-Lein\u00f6l",
@@ -769,7 +718,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lorbeer\u00f6l (Lorbeerbutter)",
     "category": "fat",
     "sapNaoh": 0.141,
-    "pricePerGram": 0.0,
     "inci": "Laurus Nobilis",
     "manufacturer": "",
     "productName": "",
@@ -784,7 +732,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Macadamianuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.0,
     "inci": "Macadamia Ternifolia",
     "manufacturer": "",
     "productName": "",
@@ -799,7 +746,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Maiskeim\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.00383703,
     "inci": "Zea Mays",
     "manufacturer": "Unilever Deutschland",
     "productName": "Mazola Keim\u00f6l",
@@ -814,7 +760,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mandelbutter (s\u00fc\u00df)",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Prunus Dulcis",
     "manufacturer": "",
     "productName": "",
@@ -829,7 +774,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mandel\u00f6l (s\u00fc\u00df)",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.01555555,
     "inci": "Prunus Dulcis",
     "manufacturer": "",
     "productName": "Mandel\u00f6l, s\u00fc\u00df",
@@ -844,7 +788,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mangokernbutter",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Mangifera Indica",
     "manufacturer": "",
     "productName": "",
@@ -859,7 +802,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mangokern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Mangifera Indica",
     "manufacturer": "",
     "productName": "",
@@ -874,7 +816,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Marula\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "Sclerocarya birrea",
     "manufacturer": "",
     "productName": "",
@@ -889,7 +830,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mohn\u00f6l",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Papaver Orientale",
     "manufacturer": "",
     "productName": "",
@@ -904,7 +844,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Monoi (unparf\u00fcmiert)",
     "category": "fat",
     "sapNaoh": 0.19,
-    "pricePerGram": 0.0,
     "inci": "Cocos Nucifera & Gardenia Tahitensis",
     "manufacturer": "",
     "productName": "",
@@ -919,7 +858,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Monoi Tiare (parf\u00fcmiert)",
     "category": "fat",
     "sapNaoh": 0.185,
-    "pricePerGram": 0.0,
     "inci": "Cocos Nucifera & Gardenia Tahitensis",
     "manufacturer": "",
     "productName": "",
@@ -934,7 +872,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Mowrahbutter",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Madhuca Latifolia",
     "manufacturer": "",
     "productName": "",
@@ -949,7 +886,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Muskatnussbutter",
     "category": "fat",
     "sapNaoh": 0.116,
-    "pricePerGram": 0.0,
     "inci": "Myristica Fragrans",
     "manufacturer": "",
     "productName": "",
@@ -964,7 +900,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Nachtkerzen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Oenothera Biennis",
     "manufacturer": "",
     "productName": "",
@@ -979,7 +914,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Neem\u00f6l",
     "category": "fat",
     "sapNaoh": 0.142,
-    "pricePerGram": 0.0,
     "inci": "Melia Azadirachta",
     "manufacturer": "",
     "productName": "",
@@ -994,7 +928,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Nerz\u00f6l",
     "category": "fat",
     "sapNaoh": 0.14,
-    "pricePerGram": 0.0,
     "inci": "Mustela",
     "manufacturer": "",
     "productName": "",
@@ -1009,7 +942,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Olivenbutter",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Olea Europaea",
     "manufacturer": "",
     "productName": "",
@@ -1024,7 +956,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Oliven\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.00753333,
     "inci": "Olea Europaea",
     "manufacturer": "Oleificio R.M.LS.P.A.",
     "productName": "Oliven\u00f6l",
@@ -1039,7 +970,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Palmfett",
     "category": "fat",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.00149,
     "inci": "Elaeis Guineensis",
     "manufacturer": "muss ich noch nach schauen",
     "productName": "Bonita",
@@ -1054,22 +984,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Palmkernfett / Palmkern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.169,
-    "pricePerGram": 0.0,
-    "inci": "Elaeis Guineensis",
-    "manufacturer": "",
-    "productName": "",
-    "merchant": "",
-    "articleNumber": "",
-    "density": 0.0,
-    "stockGrams": 0.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 501,
-    "name": "Palm\u00f6l",
-    "category": "fat",
-    "sapNaoh": 0.142,
-    "pricePerGram": 0.0,
     "inci": "Elaeis Guineensis",
     "manufacturer": "",
     "productName": "",
@@ -1084,7 +998,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Paranuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.175,
-    "pricePerGram": 0.0,
     "inci": "Bertholletia Excelsa",
     "manufacturer": "",
     "productName": "",
@@ -1099,7 +1012,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Passionsfruchtsamen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Passiflora Incarnata",
     "manufacturer": "",
     "productName": "",
@@ -1114,7 +1026,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Pekannuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Carya Illinoensis",
     "manufacturer": "",
     "productName": "",
@@ -1129,7 +1040,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Perilla\u00f6l (Schwarznessel, Bienenweide)",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "Perilla Ocymoides",
     "manufacturer": "",
     "productName": "",
@@ -1144,7 +1054,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Pferde\u00f6l",
     "category": "fat",
     "sapNaoh": 0.141,
-    "pricePerGram": 0.0,
     "inci": "Adeps Equinus",
     "manufacturer": "",
     "productName": "",
@@ -1159,7 +1068,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Pfirsichkern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "Prunus Persica",
     "manufacturer": "",
     "productName": "",
@@ -1174,7 +1082,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Pistazien\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.0,
     "inci": "Pistacia vera",
     "manufacturer": "",
     "productName": "",
@@ -1189,7 +1096,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Reiskleie\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Oryza Sativa",
     "manufacturer": "",
     "productName": "",
@@ -1204,7 +1110,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Rindertalg",
     "category": "fat",
     "sapNaoh": 0.14,
-    "pricePerGram": 0.0,
     "inci": "Adeps Bovis",
     "manufacturer": "",
     "productName": "",
@@ -1219,7 +1124,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Rizinus\u00f6l (Castor\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.01150537,
     "inci": "Ricinus Communis",
     "manufacturer": "",
     "productName": "Rizinus\u00f6l",
@@ -1234,7 +1138,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sal Butter",
     "category": "fat",
     "sapNaoh": 0.132,
-    "pricePerGram": 0.0,
     "inci": "Shorea Robusta",
     "manufacturer": "",
     "productName": "",
@@ -1249,7 +1152,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sanddorn\u00f6l (Sanddornkern\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.116,
-    "pricePerGram": 0.0,
     "inci": "Hippophae Rhamnoides",
     "manufacturer": "",
     "productName": "",
@@ -1264,7 +1166,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Schafstalg",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Adeps Ovillus",
     "manufacturer": "",
     "productName": "",
@@ -1279,7 +1180,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Schwarze Johannisbeere Kern\u00f6l (Cassis \u00d6l)",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Ribes Nigrum",
     "manufacturer": "",
     "productName": "",
@@ -1294,7 +1194,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Schwarzk\u00fcmmel\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Nigella Sativa",
     "manufacturer": "",
     "productName": "",
@@ -1309,7 +1208,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Schweineschmalz",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.0,
     "inci": "Adeps Suillus",
     "manufacturer": "",
     "productName": "",
@@ -1324,7 +1222,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Senfsaat\u00f6l (schwarzer Senf)",
     "category": "fat",
     "sapNaoh": 0.124,
-    "pricePerGram": 0.0,
     "inci": "Brassica Nigra",
     "manufacturer": "",
     "productName": "",
@@ -1339,7 +1236,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Senfsaat\u00f6l (weisser Senf)",
     "category": "fat",
     "sapNaoh": 0.123,
-    "pricePerGram": 0.0,
     "inci": "Brassica Alba",
     "manufacturer": "",
     "productName": "",
@@ -1354,7 +1250,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sesam\u00f6l (aus unger\u00f6steter Saat)",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.011,
     "inci": "Sesamum Indicum",
     "manufacturer": "Mazola",
     "productName": "Mazola feines Sesam\u00f6l",
@@ -1369,7 +1264,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sheabutter (auch Karit\u00e9)",
     "category": "fat",
     "sapNaoh": 0.128,
-    "pricePerGram": 0.024,
     "inci": "Butyrospermum Parkii",
     "manufacturer": "",
     "productName": "Sheabutter",
@@ -1384,7 +1278,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Shea\u00f6l",
     "category": "fat",
     "sapNaoh": 0.13,
-    "pricePerGram": 0.0,
     "inci": "Butyrospermum Parkii",
     "manufacturer": "",
     "productName": "",
@@ -1399,7 +1292,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Soja\u00f6l",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.00176666,
     "inci": "Glycine Soja",
     "manufacturer": "Vandemoortele Deutschland GmbH",
     "productName": "Sojola",
@@ -1414,7 +1306,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sojawachs",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Glycine Soja",
     "manufacturer": "",
     "productName": "",
@@ -1429,7 +1320,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Sonnenblumen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.137,
-    "pricePerGram": 0.00191111,
     "inci": "Helianthus Annuus",
     "manufacturer": "Nestle Deutschland AG",
     "productName": "Thomy Sonnenblumen\u00f6l",
@@ -1444,7 +1334,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Stearins\u00e4ure",
     "category": "fat",
     "sapNaoh": 0.147,
-    "pricePerGram": 0.0,
     "inci": "Stearic Acid",
     "manufacturer": "",
     "productName": "",
@@ -1459,7 +1348,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Tafel\u00f6l (Pflanzen\u00f6lgemisch)",
     "category": "fat",
     "sapNaoh": 0.136,
-    "pricePerGram": 0.0,
     "inci": "(?)",
     "manufacturer": "",
     "productName": "",
@@ -1474,7 +1362,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Traubenkern\u00f6l",
     "category": "fat",
     "sapNaoh": 0.133,
-    "pricePerGram": 0.0,
     "inci": "Vitis Vinifera",
     "manufacturer": "",
     "productName": "",
@@ -1489,7 +1376,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Tung\u00f6l (auch chin./jap. Holz\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "(?)",
     "manufacturer": "",
     "productName": "",
@@ -1504,7 +1390,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Walnuss\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.011,
     "inci": "Juglans Regia",
     "manufacturer": "Kunella Feinkost gmbH",
     "productName": "Reines Walnu\u00df\u00f6l",
@@ -1519,7 +1404,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Wassermelonensamen\u00f6l",
     "category": "fat",
     "sapNaoh": 0.135,
-    "pricePerGram": 0.0,
     "inci": "Citrullus Vulgaris",
     "manufacturer": "",
     "productName": "",
@@ -1534,7 +1418,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Weizenkeim\u00f6l",
     "category": "fat",
     "sapNaoh": 0.134,
-    "pricePerGram": 0.0,
     "inci": "Triticum Vulgare",
     "manufacturer": "",
     "productName": "",
@@ -1549,7 +1432,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Wiesenschaumkraut\u00f6l",
     "category": "fat",
     "sapNaoh": 0.12,
-    "pricePerGram": 0.0,
     "inci": "Limnanthes Alba",
     "manufacturer": "",
     "productName": "",
@@ -1564,7 +1446,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Ziegentalg",
     "category": "fat",
     "sapNaoh": 0.138,
-    "pricePerGram": 0.0,
     "inci": "Adeps Caprinus",
     "manufacturer": "",
     "productName": "",
@@ -1579,7 +1460,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Leitungswasser",
     "category": "liquid",
     "sapNaoh": 0.0,
-    "pricePerGram": 2.2e-06,
     "inci": "",
     "manufacturer": "Mutter Natur",
     "productName": "Trinkwasser",
@@ -1594,7 +1474,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Natriumhydrxid",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.00551666,
     "inci": "",
     "manufacturer": "",
     "productName": "",
@@ -1609,7 +1488,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kokosflocken",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.01,
     "inci": "",
     "manufacturer": "",
     "productName": "Kokina",
@@ -1624,7 +1502,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
     "category": "fat",
     "sapNaoh": 0.124,
-    "pricePerGram": 0.00127777,
     "inci": "Brassica Oleifera od. Rubus Idaeus",
     "manufacturer": "Kaufland",
     "productName": "Reines Pflanzen\u00f6l aus Raps",
@@ -1639,7 +1516,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Rose",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.02727272,
     "inci": "",
     "manufacturer": "Tchibo GmbH",
     "productName": "Rose",
@@ -1654,7 +1530,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Orange",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.02727272,
     "inci": "",
     "manufacturer": "Tchibo GmbH",
     "productName": "Orange",
@@ -1669,7 +1544,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Ylang Ylang",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.02727272,
     "inci": "",
     "manufacturer": "Tchibo GmbH",
     "productName": "Ylang Ylang",
@@ -1684,7 +1558,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lemongrass",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.02727272,
     "inci": "",
     "manufacturer": "Tchibo GmbH",
     "productName": "Lemongrass",
@@ -1699,7 +1572,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Rosmarin",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.02727272,
     "inci": "",
     "manufacturer": "Tchibo GmbH",
     "productName": "Rosmarin",
@@ -1714,7 +1586,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Patschouli",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.27777777,
     "inci": "",
     "manufacturer": "MAY",
     "productName": "Patschouli Parf.-\u00d6l",
@@ -1729,7 +1600,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Wasserminze",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.0,
     "inci": "",
     "manufacturer": "Mutter Natur",
     "productName": "Wasserminze",
@@ -1744,7 +1614,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Kakaopulver",
     "category": "color",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.0,
     "inci": "",
     "manufacturer": "Pennie",
     "productName": "Kakaopulver",
@@ -1759,7 +1628,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Fettstange",
     "category": "fat",
     "sapNaoh": 0.139,
-    "pricePerGram": 0.00149,
     "inci": "Macadamia Ternifolia",
     "manufacturer": "EUCO GmbH",
     "productName": "Pflanzenfett",
@@ -1774,7 +1642,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Milch 3,5%",
     "category": "liquid",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.00089,
     "inci": " ",
     "manufacturer": "Pennie",
     "productName": "H-Milch",
@@ -1789,7 +1656,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Honig",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.0,
     "inci": " ",
     "manufacturer": "Pennie",
     "productName": "Honig",
@@ -1800,26 +1666,10 @@ export const LEGACY_INGREDIENTS = [
     "sourceIndex": "So"
   },
   {
-    "legacyId": 622,
-    "name": "Oliven\u00f6l",
-    "category": "fat",
-    "sapNaoh": 0.136,
-    "pricePerGram": 0.00444444,
-    "inci": "Olea Europaea",
-    "manufacturer": "OLYMPIA-XENIA ASA Grichenland",
-    "productName": "Xenia",
-    "merchant": "Duty-Free",
-    "articleNumber": " ",
-    "density": 900.0,
-    "stockGrams": 400.0,
-    "sourceIndex": "FO"
-  },
-  {
     "legacyId": 624,
     "name": "Meersalz Grob",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.00169,
     "inci": "0",
     "manufacturer": "Nord-S\u00fcd Salzhandelsgesellschaft mbH",
     "productName": "Meersalz Grobk\u00f6rnig",
@@ -1834,7 +1684,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Erde",
     "category": "color",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.0056421,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Honig",
@@ -1845,41 +1694,10 @@ export const LEGACY_INGREDIENTS = [
     "sourceIndex": "Fa"
   },
   {
-    "legacyId": 634,
-    "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
-    "category": "fat",
-    "sapNaoh": 0.124,
-    "pricePerGram": 0.00137969,
-    "inci": "Brassica Oleifera od. Rubus Idaeus",
-    "manufacturer": "Goldhand Vertriebsgesellschaft mbH",
-    "productName": "TIP Reines Pflanzen\u00f6l aus Raps",
-    "merchant": "Real",
-    "articleNumber": "",
-    "density": 906.0,
-    "stockGrams": 2678.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 635,
-    "name": "Kokosnussfett",
-    "category": "fat",
-    "sapNaoh": 0.184,
-    "pricePerGram": 0.00236,
-    "inci": "Cocos Nucifera Oil",
-    "manufacturer": "Pflanzenfett Velten GmbH",
-    "productName": "Kokosfett Landkost",
-    "merchant": "Real",
-    "articleNumber": " ",
-    "density": 0.0,
-    "stockGrams": -500.0,
-    "sourceIndex": "FO"
-  },
-  {
     "legacyId": 636,
     "name": "Meeresbrise",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.13411764,
     "inci": "",
     "manufacturer": "???",
     "productName": "Meeresbrise",
@@ -1894,7 +1712,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Grapefruit Time",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.0917647,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Grapefruit Time",
@@ -1909,7 +1726,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Lemon dream",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.11058823,
     "inci": "",
     "manufacturer": "???",
     "productName": "Lemon dream",
@@ -1924,7 +1740,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Amber Oriental",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.19318181,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Amber Oriental 25%",
@@ -1939,7 +1754,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Zedernholz\u00f6l",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.4090909,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Himalaya-Zedernholz\u00f6l",
@@ -1954,7 +1768,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Bergamotte\u00f6l",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 0.42045454,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Bergamotte Reggio",
@@ -1969,7 +1782,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Tonerde",
     "category": "color",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.023,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Rote Tonerde",
@@ -1980,41 +1792,10 @@ export const LEGACY_INGREDIENTS = [
     "sourceIndex": "Fa"
   },
   {
-    "legacyId": 643,
-    "name": "Tonerde",
-    "category": "color",
-    "sapNaoh": 0.0,
-    "pricePerGram": 0.023,
-    "inci": " ",
-    "manufacturer": "???",
-    "productName": "Gr\u00fcne Tonerde",
-    "merchant": "www.behawe.com",
-    "articleNumber": " 1101",
-    "density": 0.0,
-    "stockGrams": 85.0,
-    "sourceIndex": "Fa"
-  },
-  {
-    "legacyId": 644,
-    "name": "Tonerde",
-    "category": "color",
-    "sapNaoh": 0.0,
-    "pricePerGram": 0.023,
-    "inci": " ",
-    "manufacturer": "???",
-    "productName": "Rose Tonerde",
-    "merchant": "www.behawe.com",
-    "articleNumber": " 1107",
-    "density": 0.0,
-    "stockGrams": 95.0,
-    "sourceIndex": "Fa"
-  },
-  {
     "legacyId": 645,
     "name": "Kaffee",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.007,
     "inci": " ",
     "manufacturer": "Alois Dallmayr",
     "productName": "Dallmayr prodomo",
@@ -2029,7 +1810,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Cistrosen\u00f6l",
     "category": "fragrance",
     "sapNaoh": 0.129,
-    "pricePerGram": 4.43181818,
     "inci": " ",
     "manufacturer": "WD",
     "productName": "Cistrosen\u00f6l 75%ig in Ethanol",
@@ -2044,7 +1824,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Patchouli",
     "category": "additive",
     "sapNaoh": 0.0,
-    "pricePerGram": 0.038,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Patchouli 50g",
@@ -2059,7 +1838,6 @@ export const LEGACY_INGREDIENTS = [
     "name": "Agarwood",
     "category": "fragrance",
     "sapNaoh": 0.0,
-    "pricePerGram": 7.72727272,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Agarwood 5%",
@@ -2070,26 +1848,10 @@ export const LEGACY_INGREDIENTS = [
     "sourceIndex": "DOe"
   },
   {
-    "legacyId": 649,
-    "name": "Patschouli",
-    "category": "fragrance",
-    "sapNaoh": 0.156,
-    "pricePerGram": 0.31818181,
-    "inci": " ",
-    "manufacturer": "???",
-    "productName": "Patchouli\u00f6l",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": " 105 / 202",
-    "density": 880.0,
-    "stockGrams": -14.2,
-    "sourceIndex": "DOe"
-  },
-  {
     "legacyId": 650,
     "name": "Moschus",
     "category": "fragrance",
     "sapNaoh": 0.156,
-    "pricePerGram": 0.09469696,
     "inci": " ",
     "manufacturer": "???",
     "productName": "Duft\u00f6l Moschus wei\u00df",
@@ -2098,141 +1860,6 @@ export const LEGACY_INGREDIENTS = [
     "density": 880.0,
     "stockGrams": 25.4,
     "sourceIndex": "DOe"
-  },
-  {
-    "legacyId": 651,
-    "name": "Bergamotte\u00f6l",
-    "category": "fragrance",
-    "sapNaoh": 0.129,
-    "pricePerGram": 0.31818181,
-    "inci": " ",
-    "manufacturer": "???",
-    "productName": "Bergamotte Reggio",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "147 / 202",
-    "density": 880.0,
-    "stockGrams": 4.8,
-    "sourceIndex": "DOe"
-  },
-  {
-    "legacyId": 652,
-    "name": "Kakaobutter",
-    "category": "fat",
-    "sapNaoh": 0.137,
-    "pricePerGram": 0.0148,
-    "inci": "Theobroma Cacao",
-    "manufacturer": "???",
-    "productName": "Kakaobutter",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "232 / 315",
-    "density": 0.0,
-    "stockGrams": 50.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 653,
-    "name": "Mandel\u00f6l (s\u00fc\u00df)",
-    "category": "fat",
-    "sapNaoh": 0.138,
-    "pricePerGram": 0.01125,
-    "inci": "Prunus Dulcis",
-    "manufacturer": "???",
-    "productName": "Mandel\u00f6l raffiniert",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "182 / 315",
-    "density": 880.0,
-    "stockGrams": 30.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 654,
-    "name": "Amber Oriental",
-    "category": "fragrance",
-    "sapNaoh": 0.129,
-    "pricePerGram": 0.09469696,
-    "inci": " ",
-    "manufacturer": "Dragonspice Naturwaren",
-    "productName": "Oriamber",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "249 / 315",
-    "density": 880.0,
-    "stockGrams": 50.4,
-    "sourceIndex": "DOe"
-  },
-  {
-    "legacyId": 655,
-    "name": "Sheabutter (auch Karit\u00e9)",
-    "category": "fat",
-    "sapNaoh": 0.128,
-    "pricePerGram": 0.0156,
-    "inci": "Butyrospermum Parkii",
-    "manufacturer": "Dragonspice Naturwaren",
-    "productName": "Sheabutter",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "60 / 315",
-    "density": 0.0,
-    "stockGrams": 200.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 656,
-    "name": "Zedernholz\u00f6l",
-    "category": "fragrance",
-    "sapNaoh": 0.129,
-    "pricePerGram": 0.31818181,
-    "inci": " ",
-    "manufacturer": "Dragonspice Naturwaren",
-    "productName": "Zedernholz\u00f6l Himalaya",
-    "merchant": "http://www.dragonspice.de",
-    "articleNumber": "197 / 202",
-    "density": 880.0,
-    "stockGrams": 4.3,
-    "sourceIndex": "DOe"
-  },
-  {
-    "legacyId": 657,
-    "name": "Kokosnussfett",
-    "category": "fat",
-    "sapNaoh": 0.184,
-    "pricePerGram": 0.00276,
-    "inci": "Cocos Nucifera Oil",
-    "manufacturer": "",
-    "productName": "Palmin",
-    "merchant": "Pennie",
-    "articleNumber": " ",
-    "density": 0.0,
-    "stockGrams": 1250.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 658,
-    "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
-    "category": "fat",
-    "sapNaoh": 0.124,
-    "pricePerGram": 0.0014659,
-    "inci": "Brassica Oleifera od. Rubus Idaeus",
-    "manufacturer": "Bonita",
-    "productName": "Reines Raps\u00f6l",
-    "merchant": "Pennie",
-    "articleNumber": "LFN 102780",
-    "density": 880.0,
-    "stockGrams": 820.0,
-    "sourceIndex": "FO"
-  },
-  {
-    "legacyId": 659,
-    "name": "Oliven\u00f6l",
-    "category": "fat",
-    "sapNaoh": 0.136,
-    "pricePerGram": 0.00346969,
-    "inci": "Olea Europaea",
-    "manufacturer": "Pennie",
-    "productName": "Oliven\u00f6l",
-    "merchant": "Pennie",
-    "articleNumber": " ",
-    "density": 880.0,
-    "stockGrams": 560.0,
-    "sourceIndex": "FO"
   }
 ];
 
@@ -2251,7 +1878,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-79-62",
@@ -2259,8 +1885,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 500.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-79-63",
@@ -2268,8 +1893,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-79-65",
@@ -2277,8 +1901,7 @@ export const LEGACY_RECIPES = [
         "name": "Sesam\u00f6l (aus unger\u00f6steter Saat)",
         "category": "fat",
         "weight": 90.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.011
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-79-68",
@@ -2286,8 +1909,7 @@ export const LEGACY_RECIPES = [
         "name": "Orange",
         "category": "fragrance",
         "weight": 55.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.02727272
+        "sapNaoh": 0
       },
       {
         "id": "legacy-79-69",
@@ -2295,8 +1917,7 @@ export const LEGACY_RECIPES = [
         "name": "Wasserminze",
         "category": "additive",
         "weight": 13.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.0
+        "sapNaoh": 0
       },
       {
         "id": "legacy-79-70",
@@ -2304,8 +1925,7 @@ export const LEGACY_RECIPES = [
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00753333
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-79-71",
@@ -2313,8 +1933,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 382.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-79-72",
@@ -2322,8 +1941,7 @@ export const LEGACY_RECIPES = [
         "name": "Kakaopulver",
         "category": "color",
         "weight": 2.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.0
+        "sapNaoh": 0
       }
     ]
   },
@@ -2341,7 +1959,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-80-73",
@@ -2349,8 +1966,7 @@ export const LEGACY_RECIPES = [
         "name": "Sonnenblumen\u00f6l",
         "category": "fat",
         "weight": 200.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.00191111
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-80-74",
@@ -2358,8 +1974,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-80-76",
@@ -2367,8 +1982,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 500.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-80-77",
@@ -2376,8 +1990,7 @@ export const LEGACY_RECIPES = [
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00753333
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-80-79",
@@ -2385,8 +1998,7 @@ export const LEGACY_RECIPES = [
         "name": "Fettstange",
         "category": "fat",
         "weight": 400.0,
-        "sapNaoh": 0.139,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.139
       },
       {
         "id": "legacy-80-80",
@@ -2394,8 +2006,7 @@ export const LEGACY_RECIPES = [
         "name": "Soja\u00f6l",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00176666
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-80-81",
@@ -2403,8 +2014,7 @@ export const LEGACY_RECIPES = [
         "name": "Distel\u00f6l (auch Saflor\u00f6l, F\u00e4rberdistel\u00f6l)",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.139,
-        "pricePerGram": 0.00235555
+        "sapNaoh": 0.139
       },
       {
         "id": "legacy-80-82",
@@ -2412,8 +2022,7 @@ export const LEGACY_RECIPES = [
         "name": "Lein\u00f6l",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.00866666
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-80-83",
@@ -2421,8 +2030,7 @@ export const LEGACY_RECIPES = [
         "name": "Milch 3,5%",
         "category": "liquid",
         "weight": 578.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.00089
+        "sapNaoh": 0
       },
       {
         "id": "legacy-80-84",
@@ -2430,8 +2038,7 @@ export const LEGACY_RECIPES = [
         "name": "Honig",
         "category": "additive",
         "weight": 35.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.0
+        "sapNaoh": 0
       }
     ]
   },
@@ -2449,7 +2056,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-81-85",
@@ -2457,8 +2063,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-81-86",
@@ -2466,8 +2071,7 @@ export const LEGACY_RECIPES = [
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00753333
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-81-87",
@@ -2475,8 +2079,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-81-88",
@@ -2484,8 +2087,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-81-89",
@@ -2493,8 +2095,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 350.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -2512,7 +2113,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-82-90",
@@ -2520,8 +2120,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 300.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-82-91",
@@ -2529,8 +2128,7 @@ export const LEGACY_RECIPES = [
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 200.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00753333
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-82-92",
@@ -2538,8 +2136,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 300.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-82-93",
@@ -2547,8 +2144,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 200.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-82-94",
@@ -2556,8 +2152,7 @@ export const LEGACY_RECIPES = [
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.024
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-82-95",
@@ -2565,8 +2160,7 @@ export const LEGACY_RECIPES = [
         "name": "Sonnenblumen\u00f6l",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.00191111
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-82-96",
@@ -2574,8 +2168,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 403.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -2593,7 +2186,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-83-98",
@@ -2601,8 +2193,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-83-99",
@@ -2610,8 +2201,7 @@ export const LEGACY_RECIPES = [
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 500.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00753333
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-83-100",
@@ -2619,8 +2209,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 350.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-83-101",
@@ -2628,8 +2217,7 @@ export const LEGACY_RECIPES = [
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.024
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-83-102",
@@ -2637,8 +2225,7 @@ export const LEGACY_RECIPES = [
         "name": "Soja\u00f6l",
         "category": "fat",
         "weight": 10.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00176666
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-83-103",
@@ -2646,8 +2233,7 @@ export const LEGACY_RECIPES = [
         "name": "Sonnenblumen\u00f6l",
         "category": "fat",
         "weight": 10.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.00191111
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-83-104",
@@ -2655,8 +2241,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 410.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -2674,7 +2259,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-89-110",
@@ -2682,8 +2266,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 260.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-89-111",
@@ -2691,17 +2274,15 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 260.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-89-112",
-        "legacyIngredientId": 622,
+        "legacyIngredientId": 498,
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 520.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00444444
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-89-114",
@@ -2709,8 +2290,7 @@ export const LEGACY_RECIPES = [
         "name": "Meersalz Grob",
         "category": "additive",
         "weight": 500.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.00169
+        "sapNaoh": 0
       },
       {
         "id": "legacy-89-115",
@@ -2718,8 +2298,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 364.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-89-116",
@@ -2727,8 +2306,7 @@ export const LEGACY_RECIPES = [
         "name": "Lemongrass",
         "category": "fragrance",
         "weight": 58.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.02727272
+        "sapNaoh": 0
       }
     ]
   },
@@ -2746,7 +2324,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-101-130",
@@ -2754,8 +2331,7 @@ export const LEGACY_RECIPES = [
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0204
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-101-131",
@@ -2763,8 +2339,7 @@ export const LEGACY_RECIPES = [
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.024
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-101-132",
@@ -2772,8 +2347,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 20.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-101-133",
@@ -2781,8 +2355,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 80.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-101-134",
@@ -2790,8 +2363,7 @@ export const LEGACY_RECIPES = [
         "name": "Amber Oriental",
         "category": "fragrance",
         "weight": 10.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.19318181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-101-135",
@@ -2799,8 +2371,7 @@ export const LEGACY_RECIPES = [
         "name": "Bergamotte\u00f6l",
         "category": "fragrance",
         "weight": 2.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.42045454
+        "sapNaoh": 0
       },
       {
         "id": "legacy-101-136",
@@ -2808,17 +2379,15 @@ export const LEGACY_RECIPES = [
         "name": "Zedernholz\u00f6l",
         "category": "fragrance",
         "weight": 1.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.4090909
+        "sapNaoh": 0
       },
       {
         "id": "legacy-101-139",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 300.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-101-140",
@@ -2826,8 +2395,7 @@ export const LEGACY_RECIPES = [
         "name": "Mandel\u00f6l (s\u00fc\u00df)",
         "category": "fat",
         "weight": 225.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.01555555
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-101-141",
@@ -2835,8 +2403,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 300.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-101-142",
@@ -2844,8 +2411,7 @@ export const LEGACY_RECIPES = [
         "name": "Tonerde",
         "category": "color",
         "weight": 10.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.023
+        "sapNaoh": 0
       },
       {
         "id": "legacy-101-150",
@@ -2853,8 +2419,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 10.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       }
     ]
   },
@@ -2872,7 +2437,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-102-143",
@@ -2880,8 +2444,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-102-144",
@@ -2889,26 +2452,23 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 300.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-102-145",
-        "legacyIngredientId": 622,
+        "legacyIngredientId": 498,
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 300.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00444444
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-102-146",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-102-147",
@@ -2916,8 +2476,7 @@ export const LEGACY_RECIPES = [
         "name": "Kaffee",
         "category": "additive",
         "weight": 95.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.007
+        "sapNaoh": 0
       },
       {
         "id": "legacy-102-148",
@@ -2925,8 +2484,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 385.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-102-149",
@@ -2934,8 +2492,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 20.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       }
     ]
   },
@@ -2953,25 +2510,22 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-103-152",
-        "legacyIngredientId": 622,
+        "legacyIngredientId": 498,
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 500.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00444444
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-103-153",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-103-154",
@@ -2979,8 +2533,7 @@ export const LEGACY_RECIPES = [
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0204
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-103-155",
@@ -2988,8 +2541,7 @@ export const LEGACY_RECIPES = [
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.024
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-103-157",
@@ -2997,8 +2549,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 60.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-103-158",
@@ -3006,8 +2557,7 @@ export const LEGACY_RECIPES = [
         "name": "Sonnenblumen\u00f6l",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.00191111
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-103-159",
@@ -3015,17 +2565,15 @@ export const LEGACY_RECIPES = [
         "name": "Distel\u00f6l (auch Saflor\u00f6l, F\u00e4rberdistel\u00f6l)",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.139,
-        "pricePerGram": 0.00235555
+        "sapNaoh": 0.139
       },
       {
         "id": "legacy-103-160",
-        "legacyIngredientId": 644,
+        "legacyIngredientId": 642,
         "name": "Tonerde",
         "category": "color",
         "weight": 5.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.023
+        "sapNaoh": 0
       },
       {
         "id": "legacy-103-161",
@@ -3033,8 +2581,7 @@ export const LEGACY_RECIPES = [
         "name": "Meeresbrise",
         "category": "fragrance",
         "weight": 20.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.13411764
+        "sapNaoh": 0
       },
       {
         "id": "legacy-103-163",
@@ -3042,8 +2589,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 440.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -3061,16 +2607,14 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-104-164",
-        "legacyIngredientId": 622,
+        "legacyIngredientId": 498,
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 1500.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00444444
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-104-165",
@@ -3078,8 +2622,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 40.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-104-166",
@@ -3087,17 +2630,15 @@ export const LEGACY_RECIPES = [
         "name": "Lemon dream",
         "category": "fragrance",
         "weight": 30.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.11058823
+        "sapNaoh": 0
       },
       {
         "id": "legacy-104-167",
-        "legacyIngredientId": 643,
+        "legacyIngredientId": 642,
         "name": "Tonerde",
         "category": "color",
         "weight": 10.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.023
+        "sapNaoh": 0
       },
       {
         "id": "legacy-104-169",
@@ -3105,17 +2646,15 @@ export const LEGACY_RECIPES = [
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0204
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-104-170",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 125.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-104-171",
@@ -3123,8 +2662,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 630.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -3142,7 +2680,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-105-172",
@@ -3150,8 +2687,7 @@ export const LEGACY_RECIPES = [
         "name": "Zedernholz\u00f6l",
         "category": "fragrance",
         "weight": 8.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.4090909
+        "sapNaoh": 0
       },
       {
         "id": "legacy-105-173",
@@ -3159,17 +2695,15 @@ export const LEGACY_RECIPES = [
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 152.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0204
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-105-175",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-105-176",
@@ -3177,8 +2711,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 20.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-105-177",
@@ -3186,8 +2719,7 @@ export const LEGACY_RECIPES = [
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 180.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00127777
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-105-178",
@@ -3195,8 +2727,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 230.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -3214,7 +2745,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": []
   },
   {
@@ -3231,43 +2761,38 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-108-180",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-108-181",
-        "legacyIngredientId": 653,
+        "legacyIngredientId": 485,
         "name": "Mandel\u00f6l (s\u00fc\u00df)",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.01125
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-108-182",
-        "legacyIngredientId": 652,
+        "legacyIngredientId": 470,
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0148
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-108-183",
-        "legacyIngredientId": 655,
+        "legacyIngredientId": 522,
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.0156
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-108-184",
@@ -3275,8 +2800,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 30.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-108-186",
@@ -3284,17 +2808,15 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 130.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-108-187",
-        "legacyIngredientId": 658,
+        "legacyIngredientId": 542,
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 30.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.0014659
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-108-188",
@@ -3302,8 +2824,7 @@ export const LEGACY_RECIPES = [
         "name": "Amber Oriental",
         "category": "fragrance",
         "weight": 9.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.19318181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-108-189",
@@ -3311,17 +2832,15 @@ export const LEGACY_RECIPES = [
         "name": "Bergamotte\u00f6l",
         "category": "fragrance",
         "weight": 1.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.42045454
+        "sapNaoh": 0
       },
       {
         "id": "legacy-108-191",
-        "legacyIngredientId": 656,
+        "legacyIngredientId": 640,
         "name": "Zedernholz\u00f6l",
         "category": "fragrance",
         "weight": 1.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-108-192",
@@ -3329,8 +2848,7 @@ export const LEGACY_RECIPES = [
         "name": "Tonerde",
         "category": "color",
         "weight": 5.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.023
+        "sapNaoh": 0
       },
       {
         "id": "legacy-108-193",
@@ -3338,8 +2856,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 300.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-108-194",
@@ -3347,8 +2864,7 @@ export const LEGACY_RECIPES = [
         "name": "Patchouli",
         "category": "additive",
         "weight": 1.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.038
+        "sapNaoh": 0
       }
     ]
   },
@@ -3366,16 +2882,14 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-109-195",
-        "legacyIngredientId": 658,
+        "legacyIngredientId": 542,
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 880.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.0014659
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-109-196",
@@ -3383,8 +2897,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 1000.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-109-197",
@@ -3392,17 +2905,15 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 40.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-109-199",
-        "legacyIngredientId": 643,
+        "legacyIngredientId": 642,
         "name": "Tonerde",
         "category": "color",
         "weight": 5.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.023
+        "sapNaoh": 0
       },
       {
         "id": "legacy-109-200",
@@ -3410,8 +2921,7 @@ export const LEGACY_RECIPES = [
         "name": "Bergamotte\u00f6l",
         "category": "fragrance",
         "weight": 6.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.42045454
+        "sapNaoh": 0
       },
       {
         "id": "legacy-109-201",
@@ -3419,17 +2929,15 @@ export const LEGACY_RECIPES = [
         "name": "Moschus",
         "category": "fragrance",
         "weight": 1.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.09469696
+        "sapNaoh": 0
       },
       {
         "id": "legacy-109-202",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-109-203",
@@ -3437,8 +2945,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 750.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-109-204",
@@ -3446,8 +2953,7 @@ export const LEGACY_RECIPES = [
         "name": "Distel\u00f6l (auch Saflor\u00f6l, F\u00e4rberdistel\u00f6l)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.139,
-        "pricePerGram": 0.00235555
+        "sapNaoh": 0.139
       }
     ]
   },
@@ -3465,7 +2971,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 10.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-110-206",
@@ -3473,17 +2978,15 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-110-207",
-        "legacyIngredientId": 652,
+        "legacyIngredientId": 470,
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0148
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-110-209",
@@ -3491,35 +2994,31 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 50.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-110-210",
-        "legacyIngredientId": 653,
+        "legacyIngredientId": 485,
         "name": "Mandel\u00f6l (s\u00fc\u00df)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.01125
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-110-211",
-        "legacyIngredientId": 649,
+        "legacyIngredientId": 584,
         "name": "Patschouli",
         "category": "fragrance",
         "weight": 5.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-110-213",
-        "legacyIngredientId": 659,
+        "legacyIngredientId": 498,
         "name": "Oliven\u00f6l",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0.00346969
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-110-214",
@@ -3527,8 +3026,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 193.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       }
     ]
   },
@@ -3546,25 +3044,22 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-111-215",
-        "legacyIngredientId": 656,
+        "legacyIngredientId": 640,
         "name": "Zedernholz\u00f6l",
         "category": "fragrance",
         "weight": 3.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-111-217",
-        "legacyIngredientId": 651,
+        "legacyIngredientId": 641,
         "name": "Bergamotte\u00f6l",
         "category": "fragrance",
         "weight": 4.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-111-219",
@@ -3572,26 +3067,23 @@ export const LEGACY_RECIPES = [
         "name": "Amber Oriental",
         "category": "fragrance",
         "weight": 8.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.19318181
+        "sapNaoh": 0
       },
       {
         "id": "legacy-111-220",
-        "legacyIngredientId": 654,
+        "legacyIngredientId": 639,
         "name": "Amber Oriental",
         "category": "fragrance",
         "weight": 2.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.09469696
+        "sapNaoh": 0
       },
       {
         "id": "legacy-111-221",
-        "legacyIngredientId": 658,
+        "legacyIngredientId": 542,
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 30.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.0014659
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-111-222",
@@ -3599,8 +3091,7 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 130.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-111-223",
@@ -3608,44 +3099,39 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 30.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-111-224",
-        "legacyIngredientId": 655,
+        "legacyIngredientId": 522,
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.0156
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-111-225",
-        "legacyIngredientId": 652,
+        "legacyIngredientId": 470,
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0148
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-111-226",
-        "legacyIngredientId": 653,
+        "legacyIngredientId": 485,
         "name": "Mandel\u00f6l (s\u00fc\u00df)",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.01125
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-111-227",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-111-228",
@@ -3653,17 +3139,15 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 300.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-111-229",
-        "legacyIngredientId": 649,
+        "legacyIngredientId": 584,
         "name": "Patschouli",
         "category": "fragrance",
         "weight": 3.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       }
     ]
   },
@@ -3681,43 +3165,38 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15.0,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-112-230",
-        "legacyIngredientId": 635,
+        "legacyIngredientId": 473,
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0.00236
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-112-231",
-        "legacyIngredientId": 653,
+        "legacyIngredientId": 485,
         "name": "Mandel\u00f6l (s\u00fc\u00df)",
         "category": "fat",
         "weight": 250.0,
-        "sapNaoh": 0.138,
-        "pricePerGram": 0.01125
+        "sapNaoh": 0.138
       },
       {
         "id": "legacy-112-232",
-        "legacyIngredientId": 652,
+        "legacyIngredientId": 470,
         "name": "Kakaobutter",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0.0148
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-112-233",
-        "legacyIngredientId": 655,
+        "legacyIngredientId": 522,
         "name": "Sheabutter (auch Karit\u00e9)",
         "category": "fat",
         "weight": 100.0,
-        "sapNaoh": 0.128,
-        "pricePerGram": 0.0156
+        "sapNaoh": 0.128
       },
       {
         "id": "legacy-112-234",
@@ -3725,8 +3204,7 @@ export const LEGACY_RECIPES = [
         "name": "Rizinus\u00f6l (Castor\u00f6l)",
         "category": "fat",
         "weight": 30.0,
-        "sapNaoh": 0.129,
-        "pricePerGram": 0.01150537
+        "sapNaoh": 0.129
       },
       {
         "id": "legacy-112-235",
@@ -3734,17 +3212,15 @@ export const LEGACY_RECIPES = [
         "name": "Palmfett",
         "category": "fat",
         "weight": 150.0,
-        "sapNaoh": 0.156,
-        "pricePerGram": 0.00149
+        "sapNaoh": 0.156
       },
       {
         "id": "legacy-112-236",
-        "legacyIngredientId": 634,
+        "legacyIngredientId": 542,
         "name": "Raps\u00f6l (auch\u00a0 Kolza\u00f6l)",
         "category": "fat",
         "weight": 40.0,
-        "sapNaoh": 0.124,
-        "pricePerGram": 0.00137969
+        "sapNaoh": 0.124
       },
       {
         "id": "legacy-112-237",
@@ -3752,17 +3228,15 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 300.0,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-112-238",
-        "legacyIngredientId": 649,
+        "legacyIngredientId": 584,
         "name": "Patschouli",
         "category": "fragrance",
         "weight": 15.0,
-        "sapNaoh": 0,
-        "pricePerGram": 0.31818181
+        "sapNaoh": 0
       }
     ]
   },
@@ -3780,7 +3254,6 @@ export const LEGACY_RECIPES = [
     "shrinkagePercent": 15,
     "alkaliType": "NaOH",
     "alkaliPurityPercent": 100,
-    "alkaliPricePerGram": 0.00551666,
     "ingredients": [
       {
         "id": "legacy-excel-71-koenigsblau",
@@ -3788,8 +3261,7 @@ export const LEGACY_RECIPES = [
         "name": "Koenigsblau",
         "category": "color",
         "weight": 1,
-        "sapNaoh": 0,
-        "pricePerGram": 0.05
+        "sapNaoh": 0
       },
       {
         "id": "legacy-excel-71-sonnenblume",
@@ -3797,8 +3269,7 @@ export const LEGACY_RECIPES = [
         "name": "Sonnenblumenoel",
         "category": "fat",
         "weight": 333,
-        "sapNaoh": 0.137,
-        "pricePerGram": 0
+        "sapNaoh": 0.137
       },
       {
         "id": "legacy-excel-71-olive",
@@ -3806,8 +3277,7 @@ export const LEGACY_RECIPES = [
         "name": "Olivenoel",
         "category": "fat",
         "weight": 333,
-        "sapNaoh": 0.136,
-        "pricePerGram": 0
+        "sapNaoh": 0.136
       },
       {
         "id": "legacy-excel-71-kokos",
@@ -3815,8 +3285,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosnussfett",
         "category": "fat",
         "weight": 333,
-        "sapNaoh": 0.184,
-        "pricePerGram": 0
+        "sapNaoh": 0.184
       },
       {
         "id": "legacy-excel-71-wasser",
@@ -3824,8 +3293,7 @@ export const LEGACY_RECIPES = [
         "name": "Leitungswasser",
         "category": "liquid",
         "weight": 350,
-        "sapNaoh": 0,
-        "pricePerGram": 2.2e-06
+        "sapNaoh": 0
       },
       {
         "id": "legacy-excel-71-kokosflocken",
@@ -3833,8 +3301,7 @@ export const LEGACY_RECIPES = [
         "name": "Kokosflocken",
         "category": "additive",
         "weight": 1,
-        "sapNaoh": 0,
-        "pricePerGram": 0.01
+        "sapNaoh": 0
       }
     ]
   }

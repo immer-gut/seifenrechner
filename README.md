@@ -2,15 +2,15 @@
 
 Ein neuer, browserbasierter Seifenrechner als Docker-Webstack. Der alte
 WinForms/Access-Rechner diente nur als fachlicher Anhaltspunkt fuer Kategorien,
-SAP-Werte, Ueberfettung, Wasser, Schwund und Kosten.
+SAP-Werte, Ueberfettung, Wasser und Schwund.
 
 ## Funktionen
 
 - Rezeptberechnung fuer NaOH und KOH
 - Ueberfettung, Laugenreinheit, Wasserfaktor und Schwund
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
-- Kostenrechnung inklusive Lauge und Kosten pro 100 g fertiger Seife
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
+- Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten
 - Sichtbarer Versionsstand in der Website
 - Rezeptverwaltung im Browser per `localStorage`
 - JSON Export/Import und Druckansicht
@@ -22,8 +22,9 @@ Die App bringt die aus `db_xls/Seifenrechner.mdb` extrahierten Startdaten mit:
 
 - 17 alte Rezepte aus `tbl_RName` und `tbl_Rezept`
 - 1 zusaetzliches Excel-only-Rezept aus `Seifenrechner.xlsx`
-- 149 alte Zutaten aus `tbl_Zt`
-- Laugenpreise und alte Rezeptpositionen aus den relationalen MDB-Daten
+- 133 bereinigte alte Zutaten aus `tbl_Zt`
+- Alte Rezeptpositionen aus den relationalen MDB-Daten, auf den bereinigten
+  Zutatenkatalog gemappt
 
 Die MDB wurde ohne Microsoft Access ueber UCanAccess/Jackcess ausgelesen. Ja,
 Access-Dateien aus 2015 sind weiterhin ein kleines Geschenk an die Nachwelt,

@@ -10,7 +10,7 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
-const APP_VERSION = "1.0.5";
+const APP_VERSION = "1.1.0";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -24,8 +24,7 @@ const fields = {
   superfatPercent: document.querySelector("#superfatPercent"),
   waterPercentOfFat: document.querySelector("#waterPercentOfFat"),
   shrinkagePercent: document.querySelector("#shrinkagePercent"),
-  cureWeeks: document.querySelector("#cureWeeks"),
-  alkaliPricePerGram: document.querySelector("#alkaliPricePerGram")
+  cureWeeks: document.querySelector("#cureWeeks")
 };
 
 const ingredientFields = {
@@ -34,8 +33,7 @@ const ingredientFields = {
   name: document.querySelector("#ingredientName"),
   category: document.querySelector("#ingredientCategory"),
   weight: document.querySelector("#ingredientWeight"),
-  sapNaoh: document.querySelector("#ingredientSap"),
-  pricePerGram: document.querySelector("#ingredientPrice")
+  sapNaoh: document.querySelector("#ingredientSap")
 };
 
 const elements = {
@@ -52,9 +50,7 @@ const elements = {
   targetLiquid: document.querySelector("#targetLiquid"),
   actualLiquid: document.querySelector("#actualLiquid"),
   rawMass: document.querySelector("#rawMass"),
-  curedMass: document.querySelector("#curedMass"),
-  totalCost: document.querySelector("#totalCost"),
-  costPer100g: document.querySelector("#costPer100g")
+  curedMass: document.querySelector("#curedMass")
 };
 
 document.querySelector("#appVersion").textContent = `v${APP_VERSION}`;
@@ -103,14 +99,13 @@ function renderFields() {
   fields.waterPercentOfFat.value = recipe.waterPercentOfFat;
   fields.shrinkagePercent.value = recipe.shrinkagePercent;
   fields.cureWeeks.value = recipe.cureWeeks;
-  fields.alkaliPricePerGram.value = recipe.alkaliPricePerGram;
 }
 
 function renderIngredients() {
   elements.ingredientCount.textContent = `${recipe.ingredients.length}`;
 
   if (recipe.ingredients.length === 0) {
-    elements.ingredientsTable.innerHTML = `<tr><td colspan="6" class="empty-state">Keine Zutaten.</td></tr>`;
+    elements.ingredientsTable.innerHTML = `<tr><td colspan="5" class="empty-state">Keine Zutaten.</td></tr>`;
     return;
   }
 
@@ -120,7 +115,6 @@ function renderIngredients() {
       <td>${CATEGORY_LABELS[ingredient.category]}</td>
       <td>${formatNumber(ingredient.weight)}</td>
       <td>${ingredient.category === "fat" ? formatNumber(ingredient.sapNaoh, 3) : "-"}</td>
-      <td>${formatMoney(ingredient.pricePerGram, 3)}</td>
       <td>
         <div class="table-actions">
           <button type="button" data-action="edit" data-id="${ingredient.id}" class="secondary">Edit</button>
@@ -150,15 +144,13 @@ function renderResults() {
   elements.actualLiquid.textContent = `${formatNumber(result.actualLiquid)} g`;
   elements.rawMass.textContent = `${formatNumber(result.rawMass)} g`;
   elements.curedMass.textContent = `${formatNumber(result.curedMass)} g`;
-  elements.totalCost.textContent = `${formatMoney(result.totalCost)} EUR`;
-  elements.costPer100g.textContent = `${formatMoney(result.costPer100g)} EUR`;
 
   elements.categorySummary.innerHTML = Object.entries(CATEGORY_LABELS).map(([key, label]) => {
     const total = result.categoryTotals[key];
     return `
       <div class="category-line">
         <span>${label}</span>
-        <strong>${formatNumber(total.weight)} g / ${formatMoney(total.cost)} EUR</strong>
+        <strong>${formatNumber(total.weight)} g</strong>
       </div>
     `;
   }).join("");
@@ -208,8 +200,7 @@ function updateRecipeFromFields() {
     superfatPercent: fields.superfatPercent.value,
     waterPercentOfFat: fields.waterPercentOfFat.value,
     shrinkagePercent: fields.shrinkagePercent.value,
-    cureWeeks: fields.cureWeeks.value,
-    alkaliPricePerGram: fields.alkaliPricePerGram.value
+    cureWeeks: fields.cureWeeks.value
   });
   elements.saveState.textContent = "Lokal";
 }
@@ -220,8 +211,7 @@ function upsertIngredient() {
     name: ingredientFields.name.value,
     category: ingredientFields.category.value,
     weight: ingredientFields.weight.value,
-    sapNaoh: ingredientFields.sapNaoh.value,
-    pricePerGram: ingredientFields.pricePerGram.value
+    sapNaoh: ingredientFields.sapNaoh.value
   });
 
   const index = recipe.ingredients.findIndex((item) => item.id === ingredient.id);
@@ -247,7 +237,6 @@ function editIngredient(id) {
   ingredientFields.category.value = ingredient.category;
   ingredientFields.weight.value = ingredient.weight;
   ingredientFields.sapNaoh.value = ingredient.sapNaoh;
-  ingredientFields.pricePerGram.value = ingredient.pricePerGram;
   ingredientFields.name.focus();
 }
 
@@ -267,7 +256,6 @@ function clearIngredientForm() {
   ingredientFields.category.value = "fat";
   ingredientFields.weight.value = "";
   ingredientFields.sapNaoh.value = "";
-  ingredientFields.pricePerGram.value = "";
 }
 
 function renderIngredientCatalog() {
@@ -295,7 +283,6 @@ function applyIngredientPreset() {
   ingredientFields.name.value = item.name;
   ingredientFields.category.value = item.category;
   ingredientFields.sapNaoh.value = item.category === "fat" ? item.sapNaoh : "";
-  ingredientFields.pricePerGram.value = item.pricePerGram;
   ingredientFields.weight.focus();
 }
 
@@ -417,13 +404,6 @@ function savedRecipeSubtitle(item) {
 }
 
 function formatNumber(value, decimals = 2) {
-  return Number(value).toLocaleString("de-DE", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  });
-}
-
-function formatMoney(value, decimals = 2) {
   return Number(value).toLocaleString("de-DE", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals
