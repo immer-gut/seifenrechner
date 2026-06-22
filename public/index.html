@@ -11,9 +11,18 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.6.0</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.7.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
+        <label class="theme-picker" title="Layout-Thema">
+          <span>Layout</span>
+          <select id="themeSelect">
+            <option value="lotus">Lotus</option>
+            <option value="oliven">Oliven</option>
+            <option value="patschouli">Patschouli</option>
+            <option value="bergamotte">Bergamotte</option>
+          </select>
+        </label>
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
         <button id="exportRecipe" type="button" title="JSON exportieren">Export</button>
         <label class="file-button" title="JSON importieren">

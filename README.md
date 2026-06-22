@@ -15,6 +15,7 @@ SAP-Werte, Ueberfettung, Wasser und Schwund.
   gespeichert werden
 - Druckansicht als kompakte A4-Querformatseite nach Vorbild des alten
   XLS/XLSX-Druckexports
+- Vier Layout-Themen: Lotus, Oliven, Patschouli und Bergamotte
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten

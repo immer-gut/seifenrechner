@@ -11,8 +11,10 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
-const APP_VERSION = "1.6.0";
+const THEME_KEY = "seifenrechner.theme.v1";
+const APP_VERSION = "1.7.0";
 const KOH_FROM_NAOH_FACTOR = 1.40272;
+const THEMES = ["lotus", "oliven", "patschouli", "bergamotte"];
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -58,6 +60,7 @@ const elements = {
   warningsList: document.querySelector("#warningsList"),
   recipeSearch: document.querySelector("#recipeSearch"),
   savedRecipes: document.querySelector("#savedRecipes"),
+  themeSelect: document.querySelector("#themeSelect"),
   saveState: document.querySelector("#saveState"),
   alkaliBadge: document.querySelector("#alkaliBadge"),
   lyeWithSuperfat: document.querySelector("#lyeWithSuperfat"),
@@ -82,6 +85,7 @@ const elements = {
 };
 
 document.querySelector("#appVersion").textContent = `v${APP_VERSION}`;
+applyTheme(loadTheme());
 bindEvents();
 renderIngredientCatalog();
 render();
@@ -111,11 +115,34 @@ function bindEvents() {
     recipeSearchTerm = elements.recipeSearch.value;
     renderSavedRecipes();
   });
+  elements.themeSelect.addEventListener("change", () => {
+    applyTheme(elements.themeSelect.value);
+  });
   document.querySelector("#saveRecipe").addEventListener("click", saveRecipe);
   document.querySelector("#exportRecipe").addEventListener("click", exportRecipe);
   document.querySelector("#importRecipe").addEventListener("change", importRecipe);
   document.querySelector("#printRecipe").addEventListener("click", () => window.print());
   document.querySelector("#resetRecipe").addEventListener("click", resetRecipe);
+}
+
+function loadTheme() {
+  try {
+    const stored = localStorage.getItem(THEME_KEY);
+    return THEMES.includes(stored) ? stored : "lotus";
+  } catch {
+    return "lotus";
+  }
+}
+
+function applyTheme(theme) {
+  const selected = THEMES.includes(theme) ? theme : "lotus";
+  document.body.dataset.theme = selected;
+  elements.themeSelect.value = selected;
+  try {
+    localStorage.setItem(THEME_KEY, selected);
+  } catch {
+    // Theme persistence is optional; the app still works without localStorage.
+  }
 }
 
 function render() {

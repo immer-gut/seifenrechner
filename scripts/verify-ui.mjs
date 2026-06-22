@@ -40,8 +40,36 @@ const desktop = await evaluate(client, `(() => ({
   cureEndDate: document.querySelector('#cureEndDate')?.innerText,
   catalogOptions: document.querySelectorAll('#ingredientPreset option').length,
   catalogCount: document.querySelector('#catalogCount')?.innerText,
+  themeValue: document.querySelector('#themeSelect')?.value,
+  themeOptions: [...document.querySelectorAll('#themeSelect option')].map((item) => item.value),
+  themeAccent: getComputedStyle(document.body).getPropertyValue('--accent').trim(),
   priceFields: document.querySelectorAll('#ingredientPrice, #alkaliPricePerGram, #costPer100g, #totalCost').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+}))()`);
+
+const themeFlow = await evaluate(client, `(() => {
+  const select = document.querySelector('#themeSelect');
+  const values = [...select.options].map((item) => item.value);
+  const accents = {};
+  for (const value of values) {
+    select.value = value;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    accents[value] = getComputedStyle(document.body).getPropertyValue('--accent').trim();
+  }
+  return {
+    values,
+    selected: select.value,
+    bodyTheme: document.body.dataset.theme,
+    stored: localStorage.getItem('seifenrechner.theme.v1'),
+    accents
+  };
+})()`);
+await navigate(client, appUrl);
+await waitFor(client, `document.body.dataset.theme === 'bergamotte'`);
+const persistedTheme = await evaluate(client, `(() => ({
+  selected: document.querySelector('#themeSelect')?.value,
+  bodyTheme: document.body.dataset.theme,
+  accent: getComputedStyle(document.body).getPropertyValue('--accent').trim()
 }))()`);
 
 const savedRecipeSearch = await evaluate(client, `(() => {
@@ -221,14 +249,23 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, printLayout, printPageCount, mobile, messages };
+const result = { desktop, themeFlow, persistedTheme, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, printLayout, printPageCount, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.6.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.7.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
   throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
+}
+if (desktop.themeValue !== "lotus" || desktop.themeOptions.join(",") !== "lotus,oliven,patschouli,bergamotte") {
+  throw new Error("Layout-Themen fehlen oder starten nicht mit Lotus.");
+}
+if (new Set(Object.values(themeFlow.accents)).size !== 4 || themeFlow.selected !== "bergamotte" || themeFlow.stored !== "bergamotte") {
+  throw new Error("Layout-Themen werden nicht eindeutig angewendet oder gespeichert.");
+}
+if (persistedTheme.selected !== "bergamotte" || persistedTheme.bodyTheme !== "bergamotte") {
+  throw new Error("Layout-Thema bleibt nach Reload nicht erhalten.");
 }
 if (desktop.priceFields !== 0) {
   throw new Error("Preisfelder sind noch sichtbar.");
