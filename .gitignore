@@ -5,6 +5,7 @@ node_modules/
 coverage/
 dist/
 .tmp-chrome/
+.tmp-chrome-remote/
 .codex_pydeps/
 .codex_pydeps2/
 .codex_mdbdeps/

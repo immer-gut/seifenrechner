@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.0.4</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.0.5</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -74,7 +74,7 @@
           </label>
           <label>
             Laugenpreis EUR/g
-            <input id="alkaliPricePerGram" type="number" min="0" step="0.001">
+            <input id="alkaliPricePerGram" type="number" min="0" step="0.00001">
           </label>
         </div>
 
@@ -122,7 +122,7 @@
           </label>
           <label>
             EUR/g
-            <input id="ingredientPrice" type="number" min="0" step="0.001">
+            <input id="ingredientPrice" type="number" min="0" step="0.00001">
           </label>
           <div class="form-actions">
             <button type="submit">Zutat speichern</button>

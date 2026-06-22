@@ -10,7 +10,7 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
-const APP_VERSION = "1.0.4";
+const APP_VERSION = "1.0.5";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
