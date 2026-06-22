@@ -11,6 +11,7 @@ SAP-Werte, Ueberfettung, Wasser, Schwund und Kosten.
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Kostenrechnung inklusive Lauge und Kosten pro 100 g fertiger Seife
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
+- Sichtbarer Versionsstand in der Website
 - Rezeptverwaltung im Browser per `localStorage`
 - JSON Export/Import und Druckansicht
 - Dockerfile, Compose, Portainer-Stack und Swarm-Stack

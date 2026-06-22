@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner</h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.0.4</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -92,6 +92,12 @@
 
         <form id="ingredientForm" class="ingredient-form">
           <input id="ingredientId" type="hidden">
+          <label class="catalog-field">
+            Alte Zutat
+            <select id="ingredientPreset">
+              <option value="">Manuell erfassen</option>
+            </select>
+          </label>
           <label>
             Name
             <input id="ingredientName" type="text" required autocomplete="off">

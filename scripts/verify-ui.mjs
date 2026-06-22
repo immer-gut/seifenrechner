@@ -1,5 +1,5 @@
 const port = process.env.CHROME_DEBUG_PORT || "9222";
-const appUrl = process.env.APP_URL || "http://127.0.0.1:8082";
+const appUrl = process.env.APP_URL || `http://127.0.0.1:8082/?verify=${Date.now()}`;
 const endpoint = `http://127.0.0.1:${port}`;
 
 const target = await createTarget();
@@ -15,6 +15,8 @@ client.on("Runtime.exceptionThrown", (event) => {
 
 await client.send("Runtime.enable");
 await client.send("Page.enable");
+await client.send("Network.enable");
+await client.send("Network.setCacheDisabled", { cacheDisabled: true });
 await client.send("Emulation.setDeviceMetricsOverride", {
   width: 1440,
   height: 1000,
@@ -33,6 +35,8 @@ const desktop = await evaluate(client, `(() => ({
   cost: document.querySelector('#costPer100g')?.innerText,
   rows: document.querySelectorAll('#ingredientsTable tr').length,
   savedRecipes: document.querySelectorAll('#savedRecipes .saved-item').length,
+  version: document.querySelector('#appVersion')?.innerText,
+  catalogOptions: document.querySelectorAll('#ingredientPreset option').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 }))()`);
 
@@ -52,7 +56,7 @@ await client.send("Emulation.setDeviceMetricsOverride", {
   mobile: true
 });
 await navigate(client, appUrl);
-await waitFor(client, `document.querySelector('h1')?.innerText === 'Seifenrechner'`);
+await waitFor(client, `document.querySelector('h1')?.innerText?.startsWith('Seifenrechner')`);
 
 const mobile = await evaluate(client, `(() => ({
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -74,10 +78,10 @@ client.close();
 const result = { desktop, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || desktop.h1 !== "Seifenrechner") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.0.4") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
-if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18) {
+if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 150) {
   throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
 }
 if (messages.some((message) => message.type === "exception")) {

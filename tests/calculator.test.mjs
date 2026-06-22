@@ -75,4 +75,5 @@ test("calculates imported legacy recipes close to old exports", () => {
 test("imports all recipes from the legacy data export", () => {
   assert.equal(LEGACY_RECIPES.length, 18);
   assert.equal(LEGACY_INGREDIENTS.length, 149);
+  assert.equal(LEGACY_INGREDIENTS.some((item) => item.name === "Olivenöl"), true);
 });

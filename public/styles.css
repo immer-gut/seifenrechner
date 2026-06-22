@@ -126,6 +126,10 @@ td {
   margin: 0;
   font-size: clamp(1.6rem, 2vw, 2.2rem);
   line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .eyebrow {
@@ -195,6 +199,19 @@ td {
   font-weight: 800;
 }
 
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  line-height: 1;
+  padding: 5px 9px;
+  font-weight: 800;
+}
+
 .form-grid {
   display: grid;
   gap: 12px;
@@ -210,16 +227,26 @@ td {
 
 .ingredient-form {
   display: grid;
-  grid-template-columns: minmax(170px, 1.2fr) minmax(145px, 0.8fr) repeat(3, minmax(90px, 0.6fr)) auto;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 10px;
   align-items: end;
   margin-bottom: 14px;
+}
+
+.catalog-field {
+  grid-column: span 2;
 }
 
 .form-actions {
   display: flex;
   gap: 8px;
   align-items: center;
+  grid-column: 1 / -1;
+  justify-content: flex-start;
+}
+
+.form-actions button {
+  min-width: 112px;
 }
 
 .table-wrap {
@@ -306,6 +333,7 @@ td {
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .metric strong {
@@ -370,9 +398,10 @@ td {
   }
 
   .ingredient-form {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .catalog-field,
   .form-actions {
     grid-column: 1 / -1;
   }
@@ -405,6 +434,7 @@ td {
   }
 
   .form-grid.compact label:first-child,
+  .catalog-field,
   .form-actions {
     grid-column: auto;
   }

@@ -6,10 +6,11 @@ import {
   sanitizeIngredient,
   sanitizeRecipe
 } from "./calculator.js";
-import { LEGACY_RECIPES } from "./legacy-data.js";
+import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
+const APP_VERSION = "1.0.4";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -29,6 +30,7 @@ const fields = {
 
 const ingredientFields = {
   id: document.querySelector("#ingredientId"),
+  preset: document.querySelector("#ingredientPreset"),
   name: document.querySelector("#ingredientName"),
   category: document.querySelector("#ingredientCategory"),
   weight: document.querySelector("#ingredientWeight"),
@@ -55,7 +57,9 @@ const elements = {
   costPer100g: document.querySelector("#costPer100g")
 };
 
+document.querySelector("#appVersion").textContent = `v${APP_VERSION}`;
 bindEvents();
+renderIngredientCatalog();
 render();
 
 function bindEvents() {
@@ -73,6 +77,7 @@ function bindEvents() {
   });
 
   document.querySelector("#clearIngredient").addEventListener("click", clearIngredientForm);
+  ingredientFields.preset.addEventListener("change", applyIngredientPreset);
   document.querySelector("#saveRecipe").addEventListener("click", saveRecipe);
   document.querySelector("#exportRecipe").addEventListener("click", exportRecipe);
   document.querySelector("#importRecipe").addEventListener("change", importRecipe);
@@ -257,11 +262,41 @@ function deleteIngredient(id) {
 
 function clearIngredientForm() {
   ingredientFields.id.value = "";
+  ingredientFields.preset.value = "";
   ingredientFields.name.value = "";
   ingredientFields.category.value = "fat";
   ingredientFields.weight.value = "";
   ingredientFields.sapNaoh.value = "";
   ingredientFields.pricePerGram.value = "";
+}
+
+function renderIngredientCatalog() {
+  const sorted = [...LEGACY_INGREDIENTS].sort((left, right) => {
+    const category = CATEGORY_LABELS[left.category].localeCompare(CATEGORY_LABELS[right.category], "de");
+    return category || left.name.localeCompare(right.name, "de");
+  });
+
+  ingredientFields.preset.insertAdjacentHTML(
+    "beforeend",
+    sorted.map((item) => `
+      <option value="${item.legacyId}">
+        ${escapeHtml(CATEGORY_LABELS[item.category])} - ${escapeHtml(item.name)}
+      </option>
+    `).join("")
+  );
+}
+
+function applyIngredientPreset() {
+  const legacyId = Number(ingredientFields.preset.value);
+  const item = LEGACY_INGREDIENTS.find((candidate) => candidate.legacyId === legacyId);
+  if (!item) return;
+
+  ingredientFields.id.value = "";
+  ingredientFields.name.value = item.name;
+  ingredientFields.category.value = item.category;
+  ingredientFields.sapNaoh.value = item.category === "fat" ? item.sapNaoh : "";
+  ingredientFields.pricePerGram.value = item.pricePerGram;
+  ingredientFields.weight.focus();
 }
 
 function saveRecipe() {
