@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.3.0</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.4.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -76,10 +76,22 @@
             Reifezeit Wochen
             <input id="cureWeeks" type="number" min="0" step="1">
           </label>
+          <label>
+            Note
+            <input id="rating" type="text" autocomplete="off">
+          </label>
+          <label class="wide-field">
+            Bemerkung
+            <textarea id="remarks" rows="3"></textarea>
+          </label>
         </div>
 
         <div class="saved-recipes">
           <h3>Gespeicherte Rezepte</h3>
+          <label class="search-field">
+            Suche
+            <input id="recipeSearch" type="search" autocomplete="off" placeholder="Name, Zutat, Datum, Note...">
+          </label>
           <div id="savedRecipes" class="saved-list"></div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { addWeeksToDate, calculateRecipe, normalizeRecipeDate, sanitizeIngredient } from "../public/calculator.js";
+import { addWeeksToDate, calculateRecipe, normalizeRecipeDate, sanitizeIngredient, sanitizeRecipe } from "../public/calculator.js";
 import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "../public/legacy-data.js";
 
 test("calculates NaOH recipe with superfat, water and shrinkage", () => {
@@ -91,6 +91,17 @@ test("keeps catalog references on recipe ingredients", () => {
   });
 
   assert.equal(ingredient.catalogKey, "custom:olive");
+});
+
+test("keeps recipe note and remarks", () => {
+  const recipe = sanitizeRecipe({
+    name: "Bewertung",
+    rating: "8",
+    remarks: "Schoener Schaum nach der Reifezeit"
+  });
+
+  assert.equal(recipe.rating, "8");
+  assert.equal(recipe.remarks, "Schoener Schaum nach der Reifezeit");
 });
 
 test("calculates imported legacy recipes close to old exports", () => {

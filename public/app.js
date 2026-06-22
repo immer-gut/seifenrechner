@@ -11,12 +11,13 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
-const APP_VERSION = "1.3.0";
+const APP_VERSION = "1.4.0";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
 let customIngredients = loadCustomIngredients();
 let result = calculateRecipe(recipe);
+let recipeSearchTerm = "";
 
 const fields = {
   recipeName: document.querySelector("#recipeName"),
@@ -27,7 +28,9 @@ const fields = {
   superfatPercent: document.querySelector("#superfatPercent"),
   waterPercentOfFat: document.querySelector("#waterPercentOfFat"),
   shrinkagePercent: document.querySelector("#shrinkagePercent"),
-  cureWeeks: document.querySelector("#cureWeeks")
+  cureWeeks: document.querySelector("#cureWeeks"),
+  rating: document.querySelector("#rating"),
+  remarks: document.querySelector("#remarks")
 };
 
 const ingredientFields = {
@@ -52,6 +55,7 @@ const elements = {
   ingredientCount: document.querySelector("#ingredientCount"),
   categorySummary: document.querySelector("#categorySummary"),
   warningsList: document.querySelector("#warningsList"),
+  recipeSearch: document.querySelector("#recipeSearch"),
   savedRecipes: document.querySelector("#savedRecipes"),
   saveState: document.querySelector("#saveState"),
   alkaliBadge: document.querySelector("#alkaliBadge"),
@@ -90,6 +94,10 @@ function bindEvents() {
 
   document.querySelector("#clearIngredient").addEventListener("click", clearIngredientForm);
   document.querySelector("#clearCatalogIngredient").addEventListener("click", clearCatalogIngredientForm);
+  elements.recipeSearch.addEventListener("input", () => {
+    recipeSearchTerm = elements.recipeSearch.value;
+    renderSavedRecipes();
+  });
   document.querySelector("#saveRecipe").addEventListener("click", saveRecipe);
   document.querySelector("#exportRecipe").addEventListener("click", exportRecipe);
   document.querySelector("#importRecipe").addEventListener("change", importRecipe);
@@ -117,6 +125,8 @@ function renderFields() {
   fields.waterPercentOfFat.value = recipe.waterPercentOfFat;
   fields.shrinkagePercent.value = recipe.shrinkagePercent;
   fields.cureWeeks.value = recipe.cureWeeks;
+  fields.rating.value = recipe.rating;
+  fields.remarks.value = recipe.remarks;
 }
 
 function renderIngredients() {
@@ -180,12 +190,14 @@ function renderResults() {
 }
 
 function renderSavedRecipes() {
-  if (recipes.length === 0) {
-    elements.savedRecipes.innerHTML = `<div class="empty-state">Noch nichts gespeichert.</div>`;
+  const visibleRecipes = filterRecipes(recipes, recipeSearchTerm);
+
+  if (visibleRecipes.length === 0) {
+    elements.savedRecipes.innerHTML = `<div class="empty-state">${recipes.length === 0 ? "Noch nichts gespeichert." : "Keine passenden Rezepte."}</div>`;
     return;
   }
 
-  elements.savedRecipes.innerHTML = recipes.map((item) => `
+  elements.savedRecipes.innerHTML = visibleRecipes.map((item) => `
     <div class="saved-item">
       <div>
         <strong>${escapeHtml(item.name)}</strong>
@@ -220,7 +232,9 @@ function updateRecipeFromFields() {
     superfatPercent: fields.superfatPercent.value,
     waterPercentOfFat: fields.waterPercentOfFat.value,
     shrinkagePercent: fields.shrinkagePercent.value,
-    cureWeeks: fields.cureWeeks.value
+    cureWeeks: fields.cureWeeks.value,
+    rating: fields.rating.value,
+    remarks: fields.remarks.value
   });
   elements.saveState.textContent = "Lokal";
 }
@@ -503,8 +517,45 @@ function savedRecipeSubtitle(item) {
     `hergestellt ${formatDate(item.madeAt)}`,
     `reif ${formatDate(calculateRecipe(item).cureEndDate)}`
   ];
-  if (item.rating && item.rating !== "noch nicht bewertet") details.push(`Note ${item.rating}`);
+  if (item.rating) details.push(`Note ${item.rating}`);
   return details.join(" · ");
+}
+
+function filterRecipes(items, searchTerm) {
+  const normalizedTerm = normalizeSearch(searchTerm);
+  const noteMatch = normalizedTerm.match(/\bnote\s+([a-z0-9]+)/);
+  const terms = normalizedTerm
+    .replace(noteMatch?.[0] || "", "")
+    .split(" ")
+    .filter(Boolean);
+  if (terms.length === 0 && !noteMatch) return items;
+  return items.filter((item) => {
+    if (noteMatch && !normalizeSearch(item.rating).includes(noteMatch[1])) {
+      return false;
+    }
+    const haystack = recipeSearchIndex(item);
+    return terms.every((term) => haystack.includes(term));
+  });
+}
+
+function recipeSearchIndex(item) {
+  const result = calculateRecipe(item);
+  return normalizeSearch([
+    item.name,
+    item.process,
+    item.alkaliType,
+    item.rating,
+    item.rating ? `Note ${item.rating}` : "",
+    item.remarks,
+    formatDate(item.madeAt),
+    formatDate(result.cureEndDate),
+    `${formatNumber(item.superfatPercent)}% UeF`,
+    ...item.ingredients.flatMap((ingredient) => [
+      ingredient.name,
+      CATEGORY_LABELS[ingredient.category],
+      ingredient.category
+    ])
+  ].join(" "));
 }
 
 function getCatalogItems() {
@@ -558,6 +609,19 @@ function formatDate(value) {
   const parts = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!parts) return String(value);
   return `${parts[3]}.${parts[2]}.${parts[1]}`;
+}
+
+function normalizeSearch(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replaceAll("ä", "ae")
+    .replaceAll("ö", "oe")
+    .replaceAll("ü", "ue")
+    .replaceAll("ß", "ss")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
 function escapeHtml(value) {

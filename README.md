@@ -9,6 +9,8 @@ SAP-Werte, Ueberfettung, Wasser und Schwund.
 - Rezeptberechnung fuer NaOH und KOH
 - Ueberfettung, Laugenreinheit, Wasserfaktor und Schwund
 - Herstellungsdatum mit berechnetem Reifeende
+- Nachtraegliche Bewertung als `Note` mit Bemerkung
+- Suche in gespeicherten Rezepten nach Name, Zutaten/Inhalten, Datum und Note
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten

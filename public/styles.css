@@ -28,7 +28,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -66,7 +67,8 @@ button.danger {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -74,6 +76,11 @@ select {
   color: var(--text);
   min-height: 40px;
   padding: 8px 10px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 76px;
 }
 
 label {
@@ -227,6 +234,11 @@ td {
 }
 
 .form-grid.compact label:first-child {
+  grid-column: 1 / -1;
+}
+
+.wide-field,
+.search-field {
   grid-column: 1 / -1;
 }
 
