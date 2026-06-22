@@ -77,7 +77,7 @@ console.log(JSON.stringify(result, null, 2));
 if (desktop.title !== "Seifenrechner" || desktop.h1 !== "Seifenrechner") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
-if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 2) {
+if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18) {
   throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
 }
 if (messages.some((message) => message.type === "exception")) {

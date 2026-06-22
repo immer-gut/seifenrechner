@@ -52,8 +52,12 @@ export function sanitizeRecipe(recipe) {
 
   return {
     id: source.id || createId("recipe"),
+    legacyId: source.legacyId || null,
     name: String(source.name || "Unbenanntes Rezept"),
     process: String(source.process || "Kaltverfahren"),
+    madeAt: String(source.madeAt || ""),
+    rating: String(source.rating || ""),
+    remarks: String(source.remarks || ""),
     cureWeeks: Math.max(0, numberOrZero(source.cureWeeks)),
     superfatPercent: clamp(numberOrZero(source.superfatPercent), 0, 30),
     waterPercentOfFat: clamp(numberOrZero(source.waterPercentOfFat), 0, 100),
@@ -164,4 +168,3 @@ function mapRoundedTotals(totals) {
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
-

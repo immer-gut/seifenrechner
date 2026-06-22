@@ -8,3 +8,5 @@ dist/
 .codex_pydeps/
 .codex_pydeps2/
 .codex_mdbdeps/
+.codex_jdbcdeps/
+.tmp_mdb_export/

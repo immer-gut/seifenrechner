@@ -173,7 +173,7 @@ function renderSavedRecipes() {
     <div class="saved-item">
       <div>
         <strong>${escapeHtml(item.name)}</strong>
-        <span>${item.ingredients.length} Zutaten · ${item.alkaliType} · ${formatNumber(item.superfatPercent)}% UeF</span>
+        <span>${savedRecipeSubtitle(item)}</span>
       </div>
       <div class="saved-actions">
         <button type="button" data-action="load" data-id="${item.id}" class="secondary">Laden</button>
@@ -368,6 +368,17 @@ function mergeLegacyRecipes(storedRecipes) {
     .map(sanitizeRecipe)
     .filter((item) => !storedIds.has(item.id));
   return [...legacy, ...storedRecipes];
+}
+
+function savedRecipeSubtitle(item) {
+  const details = [
+    `${item.ingredients.length} Zutaten`,
+    item.alkaliType,
+    `${formatNumber(item.superfatPercent)}% UeF`
+  ];
+  if (item.madeAt) details.push(item.madeAt);
+  if (item.rating && item.rating !== "noch nicht bewertet") details.push(`Note ${item.rating}`);
+  return details.join(" · ");
 }
 
 function formatNumber(value, decimals = 2) {

@@ -10,23 +10,23 @@ SAP-Werte, Ueberfettung, Wasser, Schwund und Kosten.
 - Ueberfettung, Laugenreinheit, Wasserfaktor und Schwund
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Kostenrechnung inklusive Lauge und Kosten pro 100 g fertiger Seife
-- Importierte Alt-Rezepte aus den Excel-Exporten `Seifenrechner.xls` und `Seifenrechner.xlsx`
+- Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Rezeptverwaltung im Browser per `localStorage`
 - JSON Export/Import und Druckansicht
 - Dockerfile, Compose, Portainer-Stack und Swarm-Stack
 
 ## Altdaten
 
-Die App bringt zwei alte Rezepte als Startdaten mit:
+Die App bringt die aus `db_xls/Seifenrechner.mdb` extrahierten Startdaten mit:
 
-- `Patschouli-Pure (Alt Nr. 112)` aus `db_xls/Seifenrechner.xls`
-- `Milch & Honig Seife (Alt Nr. 71)` aus `db_xls/Seifenrechner.xlsx`
+- 17 alte Rezepte aus `tbl_RName` und `tbl_Rezept`
+- 1 zusaetzliches Excel-only-Rezept aus `Seifenrechner.xlsx`
+- 149 alte Zutaten aus `tbl_Zt`
+- Laugenpreise und alte Rezeptpositionen aus den relationalen MDB-Daten
 
-Die Access-Datei `db_xls/Seifenrechner.mdb` enthaelt weitere Tabellen, konnte in
-dieser Umgebung aber nicht strukturiert gelesen werden, weil weder Jet/ACE-OLEDB
-noch Access/Excel-COM installiert sind. Die Excel-Exporte wurden deshalb als
-zuverlaessige Quelle importiert. Ja, Access-Dateien aus 2015 sind weiterhin ein
-kleines Geschenk an die Nachwelt.
+Die MDB wurde ohne Microsoft Access ueber UCanAccess/Jackcess ausgelesen. Ja,
+Access-Dateien aus 2015 sind weiterhin ein kleines Geschenk an die Nachwelt,
+aber immerhin jetzt ein versioniertes.
 
 ## Lokal starten
 

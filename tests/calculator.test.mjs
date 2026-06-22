@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { calculateRecipe } from "../public/calculator.js";
-import { LEGACY_RECIPES } from "../public/legacy-data.js";
+import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "../public/legacy-data.js";
 
 test("calculates NaOH recipe with superfat, water, shrinkage and cost", () => {
   const result = calculateRecipe({
@@ -59,8 +59,8 @@ test("warns about missing fat SAP values", () => {
 });
 
 test("calculates imported legacy recipes close to old exports", () => {
-  const patschouli = calculateRecipe(LEGACY_RECIPES[0]);
-  const milchHonig = calculateRecipe(LEGACY_RECIPES[1]);
+  const patschouli = calculateRecipe(LEGACY_RECIPES.find((item) => item.legacyId === 112));
+  const milchHonig = calculateRecipe(LEGACY_RECIPES.find((item) => item.legacyId === "excel-71"));
 
   assert.equal(patschouli.lyeWithoutSuperfat, 139.23);
   assert.equal(patschouli.lyeWithSuperfat, 132.27);
@@ -70,4 +70,9 @@ test("calculates imported legacy recipes close to old exports", () => {
   assert.equal(milchHonig.lyeWithoutSuperfat, 152.18);
   assert.equal(milchHonig.lyeWithSuperfat, 136.96);
   assert.equal(milchHonig.curedMass, 1264.77);
+});
+
+test("imports all recipes from the legacy data export", () => {
+  assert.equal(LEGACY_RECIPES.length, 18);
+  assert.equal(LEGACY_INGREDIENTS.length, 149);
 });
