@@ -3,7 +3,7 @@ services:
     image: ghcr.io/immer-gut/seifenrechner:latest
     ports:
       - target: 80
-        published: 8080
+        published: 8082
         protocol: tcp
         mode: ingress
     deploy:

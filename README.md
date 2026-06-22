@@ -20,7 +20,7 @@ SAP-Werte, Ueberfettung, Wasser, Schwund und Kosten.
 docker compose up --build
 ```
 
-Danach ist die Website unter <http://localhost:8080> erreichbar.
+Danach ist die Website unter <http://localhost:8082> erreichbar.
 
 ## Portainer
 
@@ -33,7 +33,7 @@ services:
     image: ghcr.io/immer-gut/seifenrechner:latest
     container_name: seifenrechner
     ports:
-      - "8080:80"
+      - "8082:80"
     restart: unless-stopped
 ```
 
@@ -71,4 +71,3 @@ npm test
 
 Die Tests pruefen die reine Rechnerlogik. Die Website selbst ist eine statische
 App ohne Server-Backend.
-

@@ -4,6 +4,5 @@ services:
     image: seifenrechner:latest
     container_name: seifenrechner
     ports:
-      - "8080:80"
+      - "8082:80"
     restart: unless-stopped
-
