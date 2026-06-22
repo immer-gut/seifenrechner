@@ -11,7 +11,8 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
-const APP_VERSION = "1.5.0";
+const APP_VERSION = "1.6.0";
+const KOH_FROM_NAOH_FACTOR = 1.40272;
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -65,7 +66,19 @@ const elements = {
   actualLiquid: document.querySelector("#actualLiquid"),
   rawMass: document.querySelector("#rawMass"),
   curedMass: document.querySelector("#curedMass"),
-  cureEndDate: document.querySelector("#cureEndDate")
+  cureEndDate: document.querySelector("#cureEndDate"),
+  printTitle: document.querySelector("#printTitle"),
+  printRecipeNumber: document.querySelector("#printRecipeNumber"),
+  printMadeAt: document.querySelector("#printMadeAt"),
+  printCureEnd: document.querySelector("#printCureEnd"),
+  printProperties: document.querySelector("#printProperties"),
+  printIngredientsTable: document.querySelector("#printIngredientsTable"),
+  printLyeColumn: document.querySelector("#printLyeColumn"),
+  printCategoryTable: document.querySelector("#printCategoryTable"),
+  printResultTable: document.querySelector("#printResultTable"),
+  printCureNotice: document.querySelector("#printCureNotice"),
+  printNotes: document.querySelector("#printNotes"),
+  printWarnings: document.querySelector("#printWarnings")
 };
 
 document.querySelector("#appVersion").textContent = `v${APP_VERSION}`;
@@ -111,6 +124,7 @@ function render() {
   renderFields();
   renderIngredients();
   renderResults();
+  renderPrintSheet();
   renderSavedRecipes();
   renderCustomCatalog();
 }
@@ -187,6 +201,67 @@ function renderResults() {
   elements.warningsList.innerHTML = result.warnings.length
     ? result.warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join("")
     : `<li>Keine Auffaelligkeiten.</li>`;
+}
+
+function renderPrintSheet() {
+  elements.printTitle.textContent = recipe.name;
+  elements.printRecipeNumber.textContent = recipe.legacyId ? `Seifen-Nr. ${recipe.legacyId}` : "Neues Rezept";
+  elements.printMadeAt.textContent = `hergestellt am: ${formatDate(recipe.madeAt)}`;
+  elements.printCureEnd.textContent = `Reifeende: ${formatDate(result.cureEndDate)}`;
+  elements.printLyeColumn.textContent = `${recipe.alkaliType} in g`;
+
+  elements.printProperties.innerHTML = [
+    ["Verfahren", recipe.process],
+    ["Lauge", recipe.alkaliType],
+    ["Reinheit", `${formatNumber(recipe.alkaliPurityPercent)} %`],
+    ["Ueberfettung", `${formatNumber(recipe.superfatPercent)} %`],
+    ["Wasser", `${formatNumber(recipe.waterPercentOfFat)} % Fett`],
+    ["Schwund", `${formatNumber(recipe.shrinkagePercent)} %`],
+    ["Reifezeit", `${formatNumber(recipe.cureWeeks, 0)} Wochen`],
+    ["Note", recipe.rating || "noch nicht bewertet"]
+  ].map(([label, value]) => `
+    <div>
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+    </div>
+  `).join("");
+
+  elements.printIngredientsTable.innerHTML = recipe.ingredients.map((ingredient) => `
+    <tr>
+      <td>${escapeHtml(ingredient.name)}</td>
+      <td class="num">${formatNumber(ingredient.weight)}</td>
+      <td class="num">${ingredient.category === "fat" ? formatNumber(ingredient.sapNaoh, 3) : ""}</td>
+      <td class="num">${formatIngredientLye(ingredient)}</td>
+    </tr>
+  `).join("");
+
+  elements.printCategoryTable.innerHTML = Object.entries(CATEGORY_LABELS).map(([key, label]) => `
+    <tr>
+      <td>${escapeHtml(label)}</td>
+      <td class="num">${formatNumber(result.categoryTotals[key].weight)}</td>
+    </tr>
+  `).join("");
+
+  elements.printResultTable.innerHTML = [
+    [`${recipe.alkaliType} ohne UeF`, `${formatNumber(result.lyeWithoutSuperfat)} g`],
+    [`${recipe.alkaliType} mit ${formatNumber(recipe.superfatPercent)}% UeF`, `${formatNumber(result.lyeWithSuperfat)} g`],
+    ["Zielfluessigkeit", `${formatNumber(result.targetLiquid)} g`],
+    ["Ist-Fluessigkeit", `${formatNumber(result.actualLiquid)} g`],
+    ["Rohmasse", `${formatNumber(result.rawMass)} g`],
+    [`Seifenmasse bei ${formatNumber(recipe.shrinkagePercent)}% Schwund`, `${formatNumber(result.curedMass)} g`]
+  ].map(([label, value]) => `
+    <tr>
+      <td>${escapeHtml(label)}</td>
+      <td class="num"><strong>${escapeHtml(value)}</strong></td>
+    </tr>
+  `).join("");
+
+  elements.printCureNotice.textContent = `Die Seife muss mindestens bis ${formatDate(result.cureEndDate)} reifen.`;
+  elements.printNotes.innerHTML = [
+    recipe.rating ? `<div><strong>Note:</strong> ${escapeHtml(recipe.rating)}</div>` : "",
+    recipe.remarks ? `<div><strong>Bemerkung:</strong> ${escapeHtml(recipe.remarks)}</div>` : ""
+  ].filter(Boolean).join("");
+  elements.printWarnings.innerHTML = result.warnings.map((warning) => `<li>${escapeHtml(warning)}</li>`).join("");
 }
 
 function renderSavedRecipes() {
@@ -636,6 +711,18 @@ function formatNumber(value, decimals = 2) {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals
   });
+}
+
+function formatIngredientLye(ingredient) {
+  if (ingredient.category !== "fat" || ingredient.weight <= 0 || ingredient.sapNaoh <= 0) {
+    return "";
+  }
+  const sap = recipe.alkaliType === "KOH"
+    ? ingredient.sapNaoh * KOH_FROM_NAOH_FACTOR
+    : ingredient.sapNaoh;
+  const purityFactor = recipe.alkaliPurityPercent / 100;
+  const lye = purityFactor > 0 ? (ingredient.weight * sap) / purityFactor : 0;
+  return formatNumber(lye, 2);
 }
 
 function formatDate(value) {

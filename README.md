@@ -13,6 +13,8 @@ SAP-Werte, Ueberfettung, Wasser und Schwund.
 - Suche in gespeicherten Rezepten nach Name, Zutaten/Inhalten, Datum und Note
 - Gespeicherte Rezepte koennen geklont, angepasst und als neues Rezept
   gespeichert werden
+- Druckansicht als kompakte A4-Querformatseite nach Vorbild des alten
+  XLS/XLSX-Druckexports
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten

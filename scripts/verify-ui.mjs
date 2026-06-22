@@ -160,6 +160,41 @@ await evaluate(client, `(() => {
 
 const changedLye = await evaluate(client, `document.querySelector('#lyeWithSuperfat').innerText`);
 
+await client.send("Emulation.setEmulatedMedia", { media: "print" });
+const printLayout = await evaluate(client, `(() => {
+  const sheet = document.querySelector('#printSheet');
+  const rect = sheet.getBoundingClientRect();
+  return {
+    display: getComputedStyle(sheet).display,
+    appHeaderDisplay: getComputedStyle(document.querySelector('.app-header')).display,
+    layoutDisplay: getComputedStyle(document.querySelector('.layout')).display,
+    title: document.querySelector('#printTitle')?.innerText,
+    madeAt: document.querySelector('#printMadeAt')?.innerText,
+    cureEnd: document.querySelector('#printCureEnd')?.innerText,
+    cureNotice: document.querySelector('#printCureNotice')?.innerText,
+    ingredientRows: document.querySelectorAll('#printIngredientsTable tr').length,
+    categoryRows: document.querySelectorAll('#printCategoryTable tr').length,
+    resultRows: document.querySelectorAll('#printResultTable tr').length,
+    hasPriceText: sheet.innerText.includes('Preis') || sheet.innerText.includes('Kosten'),
+    width: Math.round(rect.width),
+    height: Math.round(rect.height),
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+  };
+})()`);
+const printed = await client.send("Page.printToPDF", {
+  landscape: true,
+  printBackground: true,
+  paperWidth: 11.69,
+  paperHeight: 8.27,
+  marginTop: 0.47,
+  marginRight: 0.55,
+  marginBottom: 0.47,
+  marginLeft: 0.55
+});
+const pdfText = Buffer.from(printed.data, "base64").toString("latin1");
+const printPageCount = (pdfText.match(/\/Type\s*\/Page\b/g) || []).length;
+await client.send("Emulation.setEmulatedMedia", { media: "screen" });
+
 await client.send("Emulation.setDeviceMetricsOverride", {
   width: 390,
   height: 900,
@@ -186,10 +221,10 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
+const result = { desktop, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, printLayout, printPageCount, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.5.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.6.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -236,6 +271,18 @@ if (!singleFatRecipe.warnings.some((warning) => warning.includes("Nur ein Fett/O
 }
 if (singleFatRecipe.madeAt !== "2026-06-22" || singleFatRecipe.cureEndDate !== "03.08.2026") {
   throw new Error("Reifeende wird nicht aus Herstellungsdatum und Reifezeit berechnet.");
+}
+if (printLayout.display !== "block" || printLayout.appHeaderDisplay !== "none" || printLayout.layoutDisplay !== "none") {
+  throw new Error("Druckansicht ersetzt die Bildschirmansicht nicht korrekt.");
+}
+if (!printLayout.title?.includes("Palmfett Test") || !printLayout.madeAt?.includes("22.06.2026") || !printLayout.cureEnd?.includes("03.08.2026")) {
+  throw new Error("Druckansicht enthaelt Rezepttitel, Herstellungsdatum oder Reifeende nicht korrekt.");
+}
+if (printLayout.ingredientRows !== 2 || printLayout.categoryRows !== 5 || printLayout.resultRows < 6) {
+  throw new Error("Druckansicht enthaelt Zutaten, Kategorien oder Ergebniswerte nicht vollstaendig.");
+}
+if (printLayout.hasPriceText || printPageCount !== 1 || printLayout.overflow > 0) {
+  throw new Error("Druckansicht ist nicht preisfrei, einseitig oder layoutstabil.");
 }
 
 async function createTarget() {

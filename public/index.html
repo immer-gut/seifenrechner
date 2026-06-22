@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.5.0</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.6.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -219,5 +219,53 @@
         </div>
       </aside>
     </main>
+
+    <section id="printSheet" class="print-sheet" aria-label="Druckansicht Rezept">
+      <h1 id="printTitle" class="print-title"></h1>
+
+      <div class="print-meta">
+        <strong id="printRecipeNumber"></strong>
+        <strong id="printMadeAt"></strong>
+        <strong id="printCureEnd"></strong>
+      </div>
+
+      <div id="printProperties" class="print-properties"></div>
+
+      <div class="print-grid">
+        <div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th>Name der Zutat</th>
+                <th>Gewicht in g</th>
+                <th>SAP</th>
+                <th id="printLyeColumn">Lauge in g</th>
+              </tr>
+            </thead>
+            <tbody id="printIngredientsTable"></tbody>
+          </table>
+        </div>
+
+        <div class="print-summary">
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th>Kategorie</th>
+                <th>Gewicht (g)</th>
+              </tr>
+            </thead>
+            <tbody id="printCategoryTable"></tbody>
+          </table>
+
+          <table class="print-table print-results">
+            <tbody id="printResultTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="printCureNotice" class="print-cure-notice"></div>
+      <div id="printNotes" class="print-notes"></div>
+      <ul id="printWarnings" class="print-warnings"></ul>
+    </section>
   </body>
 </html>

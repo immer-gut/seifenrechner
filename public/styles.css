@@ -450,6 +450,10 @@ td {
   padding: 12px;
 }
 
+.print-sheet {
+  display: none;
+}
+
 @media (max-width: 1180px) {
   .layout {
     grid-template-columns: 1fr 1fr;
@@ -508,25 +512,146 @@ td {
 }
 
 @media print {
-  .toolbar,
-  .ingredient-form,
-  .catalog-manager,
-  .saved-recipes,
-  .table-actions {
+  @page {
+    size: A4 landscape;
+    margin: 12mm 14mm;
+  }
+
+  html,
+  body {
+    width: 269mm;
+    min-width: 0;
+    margin: 0;
+    background: #fff;
+    color: #000;
+  }
+
+  .app-header,
+  .layout {
     display: none;
   }
 
-  .app-header {
-    position: static;
-  }
-
-  .layout {
+  .print-sheet {
     display: block;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.2;
+    color: #000;
   }
 
-  .panel {
-    box-shadow: none;
-    break-inside: avoid;
-    margin-bottom: 12px;
+  .print-title {
+    margin: 2mm 0 10mm;
+    font-size: 20pt;
+    line-height: 1.1;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .print-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8mm;
+    margin-bottom: 6mm;
+    font-size: 12pt;
+  }
+
+  .print-meta strong:nth-child(2),
+  .print-meta strong:nth-child(3) {
+    text-align: right;
+  }
+
+  .print-properties {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 2mm;
+    margin-bottom: 6mm;
+  }
+
+  .print-properties div {
+    border-bottom: 0.2mm solid #000;
+    padding-bottom: 1mm;
+  }
+
+  .print-properties span {
+    display: block;
+    font-size: 8pt;
+    color: #333;
+  }
+
+  .print-properties strong {
+    display: block;
+    font-size: 9pt;
+  }
+
+  .print-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 11mm;
+    align-items: start;
+  }
+
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .print-table th,
+  .print-table td {
+    border: 0;
+    padding: 1.3mm 1.6mm;
+    font-size: 10pt;
+    line-height: 1.15;
+    vertical-align: top;
+  }
+
+  .print-table th {
+    color: #000;
+    font-weight: 700;
+    text-transform: none;
+    text-align: right;
+    border-bottom: 0.25mm solid #000;
+  }
+
+  .print-table th:first-child,
+  .print-table td:first-child {
+    text-align: left;
+  }
+
+  .print-table .num {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .print-summary {
+    display: grid;
+    gap: 5mm;
+  }
+
+  .print-results td:first-child {
+    font-weight: 700;
+  }
+
+  .print-cure-notice {
+    margin-top: 8mm;
+    font-weight: 700;
+  }
+
+  .print-notes {
+    display: grid;
+    gap: 1.5mm;
+    margin-top: 4mm;
+    max-width: 180mm;
+  }
+
+  .print-warnings {
+    margin: 4mm 0 0;
+    padding-left: 5mm;
+    max-width: 180mm;
+  }
+
+  .print-warnings:empty,
+  .print-notes:empty {
+    display: none;
   }
 }
