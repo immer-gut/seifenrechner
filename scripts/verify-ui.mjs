@@ -1,5 +1,5 @@
 const port = process.env.CHROME_DEBUG_PORT || "9222";
-const appUrl = process.env.APP_URL || "http://127.0.0.1:8080";
+const appUrl = process.env.APP_URL || "http://127.0.0.1:8082";
 const endpoint = `http://127.0.0.1:${port}`;
 
 const target = await createTarget();
@@ -32,6 +32,7 @@ const desktop = await evaluate(client, `(() => ({
   lye: document.querySelector('#lyeWithSuperfat')?.innerText,
   cost: document.querySelector('#costPer100g')?.innerText,
   rows: document.querySelectorAll('#ingredientsTable tr').length,
+  savedRecipes: document.querySelectorAll('#savedRecipes .saved-item').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 }))()`);
 
@@ -76,7 +77,7 @@ console.log(JSON.stringify(result, null, 2));
 if (desktop.title !== "Seifenrechner" || desktop.h1 !== "Seifenrechner") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
-if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1) {
+if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 2) {
   throw new Error("Rechnerwerte oder Zutatenliste fehlen.");
 }
 if (messages.some((message) => message.type === "exception")) {

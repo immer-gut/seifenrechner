@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { calculateRecipe } from "../public/calculator.js";
+import { LEGACY_RECIPES } from "../public/legacy-data.js";
 
 test("calculates NaOH recipe with superfat, water, shrinkage and cost", () => {
   const result = calculateRecipe({
@@ -55,4 +56,18 @@ test("warns about missing fat SAP values", () => {
   });
 
   assert.equal(result.warnings.includes("Mystery: SAP-NaOH fehlt."), true);
+});
+
+test("calculates imported legacy recipes close to old exports", () => {
+  const patschouli = calculateRecipe(LEGACY_RECIPES[0]);
+  const milchHonig = calculateRecipe(LEGACY_RECIPES[1]);
+
+  assert.equal(patschouli.lyeWithoutSuperfat, 139.23);
+  assert.equal(patschouli.lyeWithSuperfat, 132.27);
+  assert.equal(patschouli.curedMass, 1162.18);
+  assert.equal(patschouli.totalCost, 12.57);
+
+  assert.equal(milchHonig.lyeWithoutSuperfat, 152.18);
+  assert.equal(milchHonig.lyeWithSuperfat, 136.96);
+  assert.equal(milchHonig.curedMass, 1264.77);
 });

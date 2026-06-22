@@ -6,6 +6,7 @@ import {
   sanitizeIngredient,
   sanitizeRecipe
 } from "./calculator.js";
+import { LEGACY_RECIPES } from "./legacy-data.js";
 
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
@@ -337,9 +338,10 @@ async function importRecipe(event) {
 function loadRecipes() {
   try {
     const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return Array.isArray(parsed) ? parsed.map(sanitizeRecipe) : [];
+    const stored = Array.isArray(parsed) ? parsed.map(sanitizeRecipe) : [];
+    return mergeLegacyRecipes(stored);
   } catch {
-    return [];
+    return mergeLegacyRecipes([]);
   }
 }
 
@@ -358,6 +360,14 @@ function persistRecipes() {
 
 function persistActive() {
   localStorage.setItem(ACTIVE_KEY, JSON.stringify(recipe));
+}
+
+function mergeLegacyRecipes(storedRecipes) {
+  const storedIds = new Set(storedRecipes.map((item) => item.id));
+  const legacy = LEGACY_RECIPES
+    .map(sanitizeRecipe)
+    .filter((item) => !storedIds.has(item.id));
+  return [...legacy, ...storedRecipes];
 }
 
 function formatNumber(value, decimals = 2) {
