@@ -66,6 +66,26 @@ const savedRecipeSearch = await evaluate(client, `(() => {
   return { noteMatches, coffeeMatches, ingredientMatches };
 })()`);
 
+const cloneFlow = await evaluate(client, `(() => {
+  const before = document.querySelectorAll('#savedRecipes .saved-item').length;
+  const first = document.querySelector('#savedRecipes .saved-item button[data-action="clone"]');
+  first.click();
+  const activeName = document.querySelector('#recipeName')?.value;
+  const saveStateAfterClone = document.querySelector('#saveState')?.innerText;
+  const countAfterClone = document.querySelectorAll('#savedRecipes .saved-item').length;
+  document.querySelector('#saveRecipe').click();
+  const savedNames = [...document.querySelectorAll('#savedRecipes .saved-item strong')]
+    .map((item) => item.innerText);
+  return {
+    before,
+    activeName,
+    saveStateAfterClone,
+    countAfterClone,
+    countAfterSave: document.querySelectorAll('#savedRecipes .saved-item').length,
+    savedNames
+  };
+})()`);
+
 const customCatalogFlow = await evaluate(client, `(() => {
   document.querySelector('#catalogIngredientName').value = 'Testduft';
   document.querySelector('#catalogIngredientCategory').value = 'fragrance';
@@ -166,10 +186,10 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, savedRecipeSearch, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
+const result = { desktop, savedRecipeSearch, cloneFlow, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.4.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.5.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -189,6 +209,15 @@ if (!savedRecipeSearch.coffeeMatches.some((item) => item.includes("Kaffee-Seife"
 }
 if (!savedRecipeSearch.ingredientMatches.some((item) => item.includes("Patschouli"))) {
   throw new Error("Gespeicherte Rezepte koennen nicht nach Zutaten/Inhalten gefiltert werden.");
+}
+if (!cloneFlow.activeName?.includes(" - Kopie") || cloneFlow.saveStateAfterClone !== "Kopie") {
+  throw new Error("Rezeptklon wird nicht als neue Arbeitskopie markiert.");
+}
+if (cloneFlow.countAfterClone !== cloneFlow.before || cloneFlow.countAfterSave !== cloneFlow.before + 1) {
+  throw new Error("Rezeptklon wird vor dem Speichern oder nicht als neues Rezept gespeichert.");
+}
+if (!cloneFlow.savedNames.some((name) => name === cloneFlow.activeName)) {
+  throw new Error("Gespeicherte Rezepte enthalten den geklonten Namen nicht.");
 }
 if (customCatalogFlow.catalogOptions < 135 || customCatalogFlow.catalogCount !== "134" || customCatalogFlow.customRows !== 1 || !customCatalogFlow.hasTestduft) {
   throw new Error("Eigene Zutaten werden nicht getrennt im Katalog gepflegt und im Rezept verwendet.");

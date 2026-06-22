@@ -11,7 +11,7 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
-const APP_VERSION = "1.4.0";
+const APP_VERSION = "1.5.0";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -205,6 +205,7 @@ function renderSavedRecipes() {
       </div>
       <div class="saved-actions">
         <button type="button" data-action="load" data-id="${item.id}" class="secondary">Laden</button>
+        <button type="button" data-action="clone" data-id="${item.id}" class="secondary">Klonen</button>
         <button type="button" data-action="remove" data-id="${item.id}" class="danger">Del</button>
       </div>
     </div>
@@ -214,6 +215,8 @@ function renderSavedRecipes() {
     button.addEventListener("click", () => {
       if (button.dataset.action === "load") {
         loadSavedRecipe(button.dataset.id);
+      } else if (button.dataset.action === "clone") {
+        cloneSavedRecipe(button.dataset.id);
       } else {
         removeSavedRecipe(button.dataset.id);
       }
@@ -416,6 +419,21 @@ function loadSavedRecipe(id) {
   render();
 }
 
+function cloneSavedRecipe(id) {
+  const saved = recipes.find((item) => item.id === id);
+  if (!saved) return;
+
+  recipe = sanitizeRecipe({
+    ...clonePlainObject(saved),
+    id: createId("recipe"),
+    name: nextCloneName(saved.name)
+  });
+  persistActive();
+  clearIngredientForm();
+  render();
+  elements.saveState.textContent = "Kopie";
+}
+
 function removeSavedRecipe(id) {
   recipes = recipes.filter((item) => item.id !== id);
   persistRecipes();
@@ -507,6 +525,22 @@ function mergeLegacyRecipes(storedRecipes) {
     .map(sanitizeRecipe)
     .filter((item) => !storedIds.has(item.id));
   return [...legacy, ...storedRecipes];
+}
+
+function clonePlainObject(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function nextCloneName(name) {
+  const baseName = `${name || "Rezept"} - Kopie`;
+  const existingNames = new Set(recipes.map((item) => item.name));
+  if (!existingNames.has(baseName)) return baseName;
+
+  let index = 2;
+  while (existingNames.has(`${baseName} ${index}`)) {
+    index += 1;
+  }
+  return `${baseName} ${index}`;
 }
 
 function savedRecipeSubtitle(item) {

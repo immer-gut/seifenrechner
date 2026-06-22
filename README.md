@@ -11,6 +11,8 @@ SAP-Werte, Ueberfettung, Wasser und Schwund.
 - Herstellungsdatum mit berechnetem Reifeende
 - Nachtraegliche Bewertung als `Note` mit Bemerkung
 - Suche in gespeicherten Rezepten nach Name, Zutaten/Inhalten, Datum und Note
+- Gespeicherte Rezepte koennen geklont, angepasst und als neues Rezept
+  gespeichert werden
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten
