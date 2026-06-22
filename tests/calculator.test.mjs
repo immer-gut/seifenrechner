@@ -54,6 +54,24 @@ test("warns about missing fat SAP values", () => {
   assert.equal(result.warnings.includes("Mystery: SAP-NaOH fehlt."), true);
 });
 
+test("warns about single-fat recipes", () => {
+  const result = calculateRecipe({
+    name: "Palmfett Test",
+    superfatPercent: 8,
+    waterPercentOfFat: 35,
+    shrinkagePercent: 12,
+    alkaliType: "NaOH",
+    alkaliPurityPercent: 99,
+    ingredients: [
+      { name: "Palmfett", category: "fat", weight: 1000, sapNaoh: 0.156 },
+      { name: "Destilliertes Wasser", category: "liquid", weight: 350 }
+    ]
+  });
+
+  assert.equal(result.lyeWithSuperfat, 144.97);
+  assert.equal(result.warnings.some((warning) => warning.includes("Nur ein Fett/Oel")), true);
+});
+
 test("calculates imported legacy recipes close to old exports", () => {
   const patschouli = calculateRecipe(LEGACY_RECIPES.find((item) => item.legacyId === 112));
   const milchHonig = calculateRecipe(LEGACY_RECIPES.find((item) => item.legacyId === "excel-71"));

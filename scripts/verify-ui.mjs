@@ -57,6 +57,29 @@ const palmfettPreset = await evaluate(client, `(() => {
   };
 })()`);
 
+await evaluate(client, `localStorage.setItem('seifenrechner.activeRecipe.v1', JSON.stringify({
+  id: 'verify-single-fat',
+  name: 'Palmfett Test',
+  process: 'Kaltverfahren',
+  cureWeeks: 6,
+  superfatPercent: 8,
+  waterPercentOfFat: 35,
+  shrinkagePercent: 12,
+  alkaliType: 'NaOH',
+  alkaliPurityPercent: 99,
+  ingredients: [
+    { id: 'verify-water', name: 'Destilliertes Wasser', category: 'liquid', weight: 350, sapNaoh: 0 },
+    { id: 'verify-palm', name: 'Palmfett', category: 'fat', weight: 1000, sapNaoh: 0.156 }
+  ]
+}))`);
+await navigate(client, appUrl);
+await waitFor(client, `document.querySelector('#recipeName')?.value === 'Palmfett Test'`);
+
+const singleFatRecipe = await evaluate(client, `(() => ({
+  lye: document.querySelector('#lyeWithSuperfat')?.innerText,
+  warnings: [...document.querySelectorAll('#warningsList li')].map((item) => item.innerText)
+}))()`);
+
 await evaluate(client, `(() => {
   const input = document.querySelector('#superfatPercent');
   input.value = '10';
@@ -92,10 +115,10 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, palmfettPreset, changedLye, mobile, messages };
+const result = { desktop, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.1.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.1.1") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -112,6 +135,9 @@ if (desktop.overflow > 0 || mobile.overflow > 0) {
 }
 if (palmfettPreset.optionCount !== 1 || palmfettPreset.hasPalmOel || !palmfettPreset.hasPalmfett) {
   throw new Error("Palmfett ist nicht eindeutig im bereinigten Katalog.");
+}
+if (!singleFatRecipe.warnings.some((warning) => warning.includes("Nur ein Fett/Oel"))) {
+  throw new Error("Ein-Fett-Rezept wird nicht fachlich gewarnt.");
 }
 
 async function createTarget() {

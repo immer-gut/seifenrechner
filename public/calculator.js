@@ -88,6 +88,7 @@ export function calculateRecipe(rawRecipe) {
 
   let lyeWithoutSuperfat = 0;
   let fatWeight = 0;
+  const fatIngredients = [];
   const warnings = [];
 
   for (const ingredient of recipe.ingredients) {
@@ -95,6 +96,9 @@ export function calculateRecipe(rawRecipe) {
 
     if (ingredient.category === "fat") {
       fatWeight += ingredient.weight;
+      if (ingredient.weight > 0) {
+        fatIngredients.push(ingredient);
+      }
 
       if (ingredient.sapNaoh <= 0 && ingredient.weight > 0) {
         warnings.push(`${ingredient.name}: SAP-NaOH fehlt.`);
@@ -119,6 +123,18 @@ export function calculateRecipe(rawRecipe) {
 
   if (fatWeight <= 0) {
     warnings.push("Keine Fette/Oele im Rezept.");
+  } else {
+    const dominantFat = fatIngredients.reduce(
+      (largest, item) => item.weight > largest.weight ? item : largest,
+      { name: "", weight: 0 }
+    );
+    const dominantPercent = fatWeight > 0 ? (dominantFat.weight / fatWeight) * 100 : 0;
+
+    if (fatIngredients.length === 1) {
+      warnings.push("Nur ein Fett/Oel im Rezept; die Seife kann unausgewogen, hart, spröde oder schlecht schäumend werden.");
+    } else if (dominantPercent >= 70) {
+      warnings.push(`${dominantFat.name} macht ${round(dominantPercent)}% der Fettmenge aus; Rezept fachlich pruefen.`);
+    }
   }
   if (targetLiquid > 0 && Math.abs(liquidDelta) > targetLiquid * 0.1) {
     warnings.push(`Fluessigkeit weicht um ${round(liquidDelta)} g vom Zielwert ab.`);
