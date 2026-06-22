@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.2.0</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.3.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -36,6 +36,10 @@
           <label>
             Name
             <input id="recipeName" type="text" autocomplete="off">
+          </label>
+          <label>
+            Hergestellt am
+            <input id="madeAt" type="date">
           </label>
           <label>
             Verfahren
@@ -185,6 +189,10 @@
           <article class="metric">
             <span>Seifenmasse nach Schwund</span>
             <strong id="curedMass">0 g</strong>
+          </article>
+          <article class="metric important">
+            <span>Reifeende</span>
+            <strong id="cureEndDate">-</strong>
           </article>
         </div>
 

@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { calculateRecipe, sanitizeIngredient } from "../public/calculator.js";
+import { addWeeksToDate, calculateRecipe, normalizeRecipeDate, sanitizeIngredient } from "../public/calculator.js";
 import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "../public/legacy-data.js";
 
 test("calculates NaOH recipe with superfat, water and shrinkage", () => {
   const result = calculateRecipe({
     name: "Test",
+    madeAt: "2026-06-22",
     superfatPercent: 8,
     waterPercentOfFat: 35,
     shrinkagePercent: 10,
@@ -24,6 +25,13 @@ test("calculates NaOH recipe with superfat, water and shrinkage", () => {
   assert.equal(result.lyeWithSuperfat, 145.82);
   assert.equal(result.rawMass, 1495.82);
   assert.equal(result.curedMass, 1346.24);
+  assert.equal(result.cureEndDate, "2026-08-03");
+});
+
+test("normalizes legacy recipe dates and calculates curing end", () => {
+  assert.equal(normalizeRecipeDate("17.5.2009"), "2009-05-17");
+  assert.equal(normalizeRecipeDate("17.08.2008"), "2008-08-17");
+  assert.equal(addWeeksToDate("17.08.2008", 6), "2008-09-28");
 });
 
 test("converts NaOH SAP to KOH and accounts for purity", () => {

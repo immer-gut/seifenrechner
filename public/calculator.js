@@ -20,6 +20,7 @@ export const DEFAULT_RECIPE = {
   id: "default",
   name: "Basisrezept",
   process: "Kaltverfahren",
+  madeAt: todayIsoDate(),
   cureWeeks: 6,
   superfatPercent: 8,
   waterPercentOfFat: 35,
@@ -54,10 +55,10 @@ export function sanitizeRecipe(recipe) {
     legacyId: source.legacyId || null,
     name: String(source.name || "Unbenanntes Rezept"),
     process: String(source.process || "Kaltverfahren"),
-    madeAt: String(source.madeAt || ""),
+    madeAt: normalizeRecipeDate(source.madeAt) || todayIsoDate(),
     rating: String(source.rating || ""),
     remarks: String(source.remarks || ""),
-    cureWeeks: Math.max(0, numberOrZero(source.cureWeeks)),
+    cureWeeks: Math.max(0, numberOrZero(source.cureWeeks ?? DEFAULT_RECIPE.cureWeeks)),
     superfatPercent: clamp(numberOrZero(source.superfatPercent), 0, 30),
     waterPercentOfFat: clamp(numberOrZero(source.waterPercentOfFat), 0, 100),
     shrinkagePercent: clamp(numberOrZero(source.shrinkagePercent), 0, 60),
@@ -120,6 +121,7 @@ export function calculateRecipe(rawRecipe) {
   const ingredientWeight = recipe.ingredients.reduce((sum, item) => sum + item.weight, 0);
   const rawMass = ingredientWeight + lyeWithSuperfat;
   const curedMass = rawMass * (1 - recipe.shrinkagePercent / 100);
+  const cureEndDate = addWeeksToDate(recipe.madeAt, recipe.cureWeeks);
   const liquidDelta = actualLiquid - targetLiquid;
 
   if (fatWeight <= 0) {
@@ -156,8 +158,34 @@ export function calculateRecipe(rawRecipe) {
     ingredientWeight: round(ingredientWeight),
     rawMass: round(rawMass),
     curedMass: round(curedMass),
+    cureEndDate,
     warnings
   };
+}
+
+export function normalizeRecipeDate(value) {
+  if (!value) return "";
+  const text = String(value).trim();
+  const iso = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (iso) return isValidDateParts(Number(iso[1]), Number(iso[2]), Number(iso[3])) ? text : "";
+
+  const german = text.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if (!german) return "";
+
+  const day = Number(german[1]);
+  const month = Number(german[2]);
+  const year = Number(german[3]);
+  if (!isValidDateParts(year, month, day)) return "";
+  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+}
+
+export function addWeeksToDate(value, weeks) {
+  const iso = normalizeRecipeDate(value);
+  if (!iso) return "";
+  const [year, month, day] = iso.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  date.setDate(date.getDate() + Math.round(numberOrZero(weeks) * 7));
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
 function mapRoundedTotals(totals) {
@@ -171,4 +199,14 @@ function mapRoundedTotals(totals) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function todayIsoDate() {
+  const today = new Date();
+  return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+}
+
+function isValidDateParts(year, month, day) {
+  const date = new Date(year, month - 1, day);
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }

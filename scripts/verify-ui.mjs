@@ -34,7 +34,10 @@ const desktop = await evaluate(client, `(() => ({
   lye: document.querySelector('#lyeWithSuperfat')?.innerText,
   rows: document.querySelectorAll('#ingredientsTable tr').length,
   savedRecipes: document.querySelectorAll('#savedRecipes .saved-item').length,
+  firstSavedSubtitle: document.querySelector('#savedRecipes .saved-item span')?.innerText,
   version: document.querySelector('#appVersion')?.innerText,
+  madeAt: document.querySelector('#madeAt')?.value,
+  cureEndDate: document.querySelector('#cureEndDate')?.innerText,
   catalogOptions: document.querySelectorAll('#ingredientPreset option').length,
   catalogCount: document.querySelector('#catalogCount')?.innerText,
   priceFields: document.querySelectorAll('#ingredientPrice, #alkaliPricePerGram, #costPer100g, #totalCost').length,
@@ -84,6 +87,7 @@ await evaluate(client, `localStorage.setItem('seifenrechner.activeRecipe.v1', JS
   id: 'verify-single-fat',
   name: 'Palmfett Test',
   process: 'Kaltverfahren',
+  madeAt: '2026-06-22',
   cureWeeks: 6,
   superfatPercent: 8,
   waterPercentOfFat: 35,
@@ -100,6 +104,8 @@ await waitFor(client, `document.querySelector('#recipeName')?.value === 'Palmfet
 
 const singleFatRecipe = await evaluate(client, `(() => ({
   lye: document.querySelector('#lyeWithSuperfat')?.innerText,
+  madeAt: document.querySelector('#madeAt')?.value,
+  cureEndDate: document.querySelector('#cureEndDate')?.innerText,
   warnings: [...document.querySelectorAll('#warningsList li')].map((item) => item.innerText)
 }))()`);
 
@@ -141,7 +147,7 @@ client.close();
 const result = { desktop, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.2.0") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.3.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -149,6 +155,9 @@ if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRe
 }
 if (desktop.priceFields !== 0) {
   throw new Error("Preisfelder sind noch sichtbar.");
+}
+if (!desktop.firstSavedSubtitle?.includes("hergestellt") || !desktop.firstSavedSubtitle?.includes("reif")) {
+  throw new Error("Gespeicherte Rezepte zeigen Herstellungsdatum und Reifeende nicht an.");
 }
 if (customCatalogFlow.catalogOptions < 135 || customCatalogFlow.catalogCount !== "134" || customCatalogFlow.customRows !== 1 || !customCatalogFlow.hasTestduft) {
   throw new Error("Eigene Zutaten werden nicht getrennt im Katalog gepflegt und im Rezept verwendet.");
@@ -164,6 +173,9 @@ if (palmfettPreset.optionCount !== 1 || palmfettPreset.hasPalmOel || !palmfettPr
 }
 if (!singleFatRecipe.warnings.some((warning) => warning.includes("Nur ein Fett/Oel"))) {
   throw new Error("Ein-Fett-Rezept wird nicht fachlich gewarnt.");
+}
+if (singleFatRecipe.madeAt !== "2026-06-22" || singleFatRecipe.cureEndDate !== "03.08.2026") {
+  throw new Error("Reifeende wird nicht aus Herstellungsdatum und Reifezeit berechnet.");
 }
 
 async function createTarget() {

@@ -11,7 +11,7 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
 const CATALOG_KEY = "seifenrechner.ingredients.v1";
-const APP_VERSION = "1.2.0";
+const APP_VERSION = "1.3.0";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
@@ -20,6 +20,7 @@ let result = calculateRecipe(recipe);
 
 const fields = {
   recipeName: document.querySelector("#recipeName"),
+  madeAt: document.querySelector("#madeAt"),
   process: document.querySelector("#process"),
   alkaliType: document.querySelector("#alkaliType"),
   alkaliPurityPercent: document.querySelector("#alkaliPurityPercent"),
@@ -59,7 +60,8 @@ const elements = {
   targetLiquid: document.querySelector("#targetLiquid"),
   actualLiquid: document.querySelector("#actualLiquid"),
   rawMass: document.querySelector("#rawMass"),
-  curedMass: document.querySelector("#curedMass")
+  curedMass: document.querySelector("#curedMass"),
+  cureEndDate: document.querySelector("#cureEndDate")
 };
 
 document.querySelector("#appVersion").textContent = `v${APP_VERSION}`;
@@ -107,6 +109,7 @@ function render() {
 
 function renderFields() {
   fields.recipeName.value = recipe.name;
+  fields.madeAt.value = recipe.madeAt;
   fields.process.value = recipe.process;
   fields.alkaliType.value = recipe.alkaliType;
   fields.alkaliPurityPercent.value = recipe.alkaliPurityPercent;
@@ -159,6 +162,7 @@ function renderResults() {
   elements.actualLiquid.textContent = `${formatNumber(result.actualLiquid)} g`;
   elements.rawMass.textContent = `${formatNumber(result.rawMass)} g`;
   elements.curedMass.textContent = `${formatNumber(result.curedMass)} g`;
+  elements.cureEndDate.textContent = formatDate(result.cureEndDate);
 
   elements.categorySummary.innerHTML = Object.entries(CATEGORY_LABELS).map(([key, label]) => {
     const total = result.categoryTotals[key];
@@ -209,6 +213,7 @@ function updateRecipeFromFields() {
   recipe = sanitizeRecipe({
     ...recipe,
     name: fields.recipeName.value,
+    madeAt: fields.madeAt.value,
     process: fields.process.value,
     alkaliType: fields.alkaliType.value,
     alkaliPurityPercent: fields.alkaliPurityPercent.value,
@@ -494,9 +499,10 @@ function savedRecipeSubtitle(item) {
   const details = [
     `${item.ingredients.length} Zutaten`,
     item.alkaliType,
-    `${formatNumber(item.superfatPercent)}% UeF`
+    `${formatNumber(item.superfatPercent)}% UeF`,
+    `hergestellt ${formatDate(item.madeAt)}`,
+    `reif ${formatDate(calculateRecipe(item).cureEndDate)}`
   ];
-  if (item.madeAt) details.push(item.madeAt);
   if (item.rating && item.rating !== "noch nicht bewertet") details.push(`Note ${item.rating}`);
   return details.join(" · ");
 }
@@ -545,6 +551,13 @@ function formatNumber(value, decimals = 2) {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals
   });
+}
+
+function formatDate(value) {
+  if (!value) return "-";
+  const parts = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!parts) return String(value);
+  return `${parts[3]}.${parts[2]}.${parts[1]}`;
 }
 
 function escapeHtml(value) {
