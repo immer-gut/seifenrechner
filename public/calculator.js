@@ -73,6 +73,7 @@ export function sanitizeIngredient(ingredient) {
 
   return {
     id: source.id || createId("ingredient"),
+    catalogKey: typeof source.catalogKey === "string" ? source.catalogKey : "",
     name: String(source.name || "Zutat"),
     category,
     weight: Math.max(0, numberOrZero(source.weight)),

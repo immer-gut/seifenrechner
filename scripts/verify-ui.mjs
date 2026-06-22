@@ -36,9 +36,32 @@ const desktop = await evaluate(client, `(() => ({
   savedRecipes: document.querySelectorAll('#savedRecipes .saved-item').length,
   version: document.querySelector('#appVersion')?.innerText,
   catalogOptions: document.querySelectorAll('#ingredientPreset option').length,
+  catalogCount: document.querySelector('#catalogCount')?.innerText,
   priceFields: document.querySelectorAll('#ingredientPrice, #alkaliPricePerGram, #costPer100g, #totalCost').length,
   overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
 }))()`);
+
+const customCatalogFlow = await evaluate(client, `(() => {
+  document.querySelector('#catalogIngredientName').value = 'Testduft';
+  document.querySelector('#catalogIngredientCategory').value = 'fragrance';
+  document.querySelector('#catalogIngredientSap').value = '';
+  document.querySelector('#catalogForm').requestSubmit();
+
+  const preset = document.querySelector('#ingredientPreset');
+  const option = [...preset.options].find((item) => item.textContent.includes('Testduft'));
+  preset.value = option.value;
+  document.querySelector('#ingredientWeight').value = '12';
+  document.querySelector('#ingredientForm').requestSubmit();
+
+  const names = [...document.querySelectorAll('#ingredientsTable tr td:first-child')]
+    .map((cell) => cell.textContent.trim());
+  return {
+    catalogOptions: preset.options.length,
+    catalogCount: document.querySelector('#catalogCount')?.innerText,
+    customRows: document.querySelectorAll('#customCatalogList .catalog-item').length,
+    hasTestduft: names.includes('Testduft')
+  };
+})()`);
 
 const palmfettPreset = await evaluate(client, `(() => {
   const preset = document.querySelector('#ingredientPreset');
@@ -115,10 +138,10 @@ const mobile = await evaluate(client, `(() => ({
 
 client.close();
 
-const result = { desktop, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
+const result = { desktop, customCatalogFlow, palmfettPreset, singleFatRecipe, changedLye, mobile, messages };
 console.log(JSON.stringify(result, null, 2));
 
-if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.1.1") {
+if (desktop.title !== "Seifenrechner" || !desktop.h1?.startsWith("Seifenrechner") || desktop.version !== "v1.2.0") {
   throw new Error("Seite wurde nicht korrekt geladen.");
 }
 if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRecipes < 18 || desktop.catalogOptions < 134) {
@@ -126,6 +149,9 @@ if (!desktop.lye || desktop.lye === "0 g" || desktop.rows < 1 || desktop.savedRe
 }
 if (desktop.priceFields !== 0) {
   throw new Error("Preisfelder sind noch sichtbar.");
+}
+if (customCatalogFlow.catalogOptions < 135 || customCatalogFlow.catalogCount !== "134" || customCatalogFlow.customRows !== 1 || !customCatalogFlow.hasTestduft) {
+  throw new Error("Eigene Zutaten werden nicht getrennt im Katalog gepflegt und im Rezept verwendet.");
 }
 if (messages.some((message) => message.type === "exception")) {
   throw new Error("Browser meldet JavaScript-Ausnahmen.");

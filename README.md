@@ -11,6 +11,8 @@ SAP-Werte, Ueberfettung, Wasser und Schwund.
 - Zutatenkategorien fuer Fette/Oele, Duft, Farbe, Fluessigkeit und Sonstiges
 - Importierte Altdaten aus der Access-Datenbank `Seifenrechner.mdb`
 - Bereinigter Zutatenkatalog ohne Preisfelder und offensichtliche Dubletten
+- Getrennter Zutatenkatalog: Zutaten anlegen/pflegen, danach im Rezept nur noch
+  Zutat auswaehlen und Gramm eintragen
 - Sichtbarer Versionsstand in der Website
 - Rezeptverwaltung im Browser per `localStorage`
 - JSON Export/Import und Druckansicht

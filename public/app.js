@@ -10,10 +10,12 @@ import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "./legacy-data.js";
 
 const STORAGE_KEY = "seifenrechner.recipes.v1";
 const ACTIVE_KEY = "seifenrechner.activeRecipe.v1";
-const APP_VERSION = "1.1.1";
+const CATALOG_KEY = "seifenrechner.ingredients.v1";
+const APP_VERSION = "1.2.0";
 
 let recipes = loadRecipes();
 let recipe = loadActiveRecipe(recipes);
+let customIngredients = loadCustomIngredients();
 let result = calculateRecipe(recipe);
 
 const fields = {
@@ -30,14 +32,21 @@ const fields = {
 const ingredientFields = {
   id: document.querySelector("#ingredientId"),
   preset: document.querySelector("#ingredientPreset"),
-  name: document.querySelector("#ingredientName"),
-  category: document.querySelector("#ingredientCategory"),
-  weight: document.querySelector("#ingredientWeight"),
-  sapNaoh: document.querySelector("#ingredientSap")
+  weight: document.querySelector("#ingredientWeight")
+};
+
+const catalogFields = {
+  id: document.querySelector("#catalogIngredientId"),
+  name: document.querySelector("#catalogIngredientName"),
+  category: document.querySelector("#catalogIngredientCategory"),
+  sapNaoh: document.querySelector("#catalogIngredientSap")
 };
 
 const elements = {
   ingredientForm: document.querySelector("#ingredientForm"),
+  catalogForm: document.querySelector("#catalogForm"),
+  customCatalogList: document.querySelector("#customCatalogList"),
+  catalogCount: document.querySelector("#catalogCount"),
   ingredientsTable: document.querySelector("#ingredientsTable"),
   ingredientCount: document.querySelector("#ingredientCount"),
   categorySummary: document.querySelector("#categorySummary"),
@@ -72,8 +81,13 @@ function bindEvents() {
     upsertIngredient();
   });
 
+  elements.catalogForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    upsertCatalogIngredient();
+  });
+
   document.querySelector("#clearIngredient").addEventListener("click", clearIngredientForm);
-  ingredientFields.preset.addEventListener("change", applyIngredientPreset);
+  document.querySelector("#clearCatalogIngredient").addEventListener("click", clearCatalogIngredientForm);
   document.querySelector("#saveRecipe").addEventListener("click", saveRecipe);
   document.querySelector("#exportRecipe").addEventListener("click", exportRecipe);
   document.querySelector("#importRecipe").addEventListener("change", importRecipe);
@@ -88,6 +102,7 @@ function render() {
   renderIngredients();
   renderResults();
   renderSavedRecipes();
+  renderCustomCatalog();
 }
 
 function renderFields() {
@@ -206,12 +221,19 @@ function updateRecipeFromFields() {
 }
 
 function upsertIngredient() {
+  const catalogItem = findCatalogItem(ingredientFields.preset.value);
+  if (!catalogItem) {
+    ingredientFields.preset.focus();
+    return;
+  }
+
   const ingredient = sanitizeIngredient({
     id: ingredientFields.id.value || createId("ingredient"),
-    name: ingredientFields.name.value,
-    category: ingredientFields.category.value,
+    catalogKey: ingredientFields.preset.value,
+    name: catalogItem.name,
+    category: catalogItem.category,
     weight: ingredientFields.weight.value,
-    sapNaoh: ingredientFields.sapNaoh.value
+    sapNaoh: catalogItem.category === "fat" ? catalogItem.sapNaoh : 0
   });
 
   const index = recipe.ingredients.findIndex((item) => item.id === ingredient.id);
@@ -233,11 +255,9 @@ function editIngredient(id) {
   if (!ingredient) return;
 
   ingredientFields.id.value = ingredient.id;
-  ingredientFields.name.value = ingredient.name;
-  ingredientFields.category.value = ingredient.category;
+  ingredientFields.preset.value = ingredient.catalogKey || findCatalogKeyForIngredient(ingredient);
   ingredientFields.weight.value = ingredient.weight;
-  ingredientFields.sapNaoh.value = ingredient.sapNaoh;
-  ingredientFields.name.focus();
+  ingredientFields.preset.focus();
 }
 
 function deleteIngredient(id) {
@@ -252,38 +272,103 @@ function deleteIngredient(id) {
 function clearIngredientForm() {
   ingredientFields.id.value = "";
   ingredientFields.preset.value = "";
-  ingredientFields.name.value = "";
-  ingredientFields.category.value = "fat";
   ingredientFields.weight.value = "";
-  ingredientFields.sapNaoh.value = "";
 }
 
 function renderIngredientCatalog() {
-  const sorted = [...LEGACY_INGREDIENTS].sort((left, right) => {
+  const sorted = getCatalogItems().sort((left, right) => {
     const category = CATEGORY_LABELS[left.category].localeCompare(CATEGORY_LABELS[right.category], "de");
     return category || left.name.localeCompare(right.name, "de");
   });
 
-  ingredientFields.preset.insertAdjacentHTML(
-    "beforeend",
-    sorted.map((item) => `
-      <option value="${item.legacyId}">
+  ingredientFields.preset.innerHTML = `
+    <option value="">Zutat auswaehlen</option>
+    ${sorted.map((item) => `
+      <option value="${item.catalogKey}">
         ${escapeHtml(CATEGORY_LABELS[item.category])} - ${escapeHtml(item.name)}
       </option>
-    `).join("")
-  );
+    `).join("")}
+  `;
 }
 
-function applyIngredientPreset() {
-  const legacyId = Number(ingredientFields.preset.value);
-  const item = LEGACY_INGREDIENTS.find((candidate) => candidate.legacyId === legacyId);
-  if (!item) return;
+function upsertCatalogIngredient() {
+  const ingredient = sanitizeCatalogIngredient({
+    id: catalogFields.id.value || createId("catalog"),
+    name: catalogFields.name.value,
+    category: catalogFields.category.value,
+    sapNaoh: catalogFields.sapNaoh.value
+  });
 
-  ingredientFields.id.value = "";
-  ingredientFields.name.value = item.name;
-  ingredientFields.category.value = item.category;
-  ingredientFields.sapNaoh.value = item.category === "fat" ? item.sapNaoh : "";
-  ingredientFields.weight.focus();
+  const index = customIngredients.findIndex((item) => item.id === ingredient.id);
+  customIngredients = index >= 0
+    ? customIngredients.map((item) => item.id === ingredient.id ? ingredient : item)
+    : [ingredient, ...customIngredients];
+  persistCustomIngredients();
+  clearCatalogIngredientForm();
+  renderIngredientCatalog();
+  renderCustomCatalog();
+}
+
+function editCatalogIngredient(id) {
+  const ingredient = customIngredients.find((item) => item.id === id);
+  if (!ingredient) return;
+
+  catalogFields.id.value = ingredient.id;
+  catalogFields.name.value = ingredient.name;
+  catalogFields.category.value = ingredient.category;
+  catalogFields.sapNaoh.value = ingredient.sapNaoh;
+  catalogFields.name.focus();
+}
+
+function deleteCatalogIngredient(id) {
+  customIngredients = customIngredients.filter((item) => item.id !== id);
+  persistCustomIngredients();
+  renderIngredientCatalog();
+  renderCustomCatalog();
+}
+
+function clearCatalogIngredientForm() {
+  catalogFields.id.value = "";
+  catalogFields.name.value = "";
+  catalogFields.category.value = "fat";
+  catalogFields.sapNaoh.value = "";
+}
+
+function renderCustomCatalog() {
+  elements.catalogCount.textContent = `${getCatalogItems().length}`;
+
+  if (customIngredients.length === 0) {
+    elements.customCatalogList.innerHTML = `<div class="empty-state">Keine eigenen Zutaten.</div>`;
+    return;
+  }
+
+  const sorted = [...customIngredients].sort((left, right) => {
+    const category = CATEGORY_LABELS[left.category].localeCompare(CATEGORY_LABELS[right.category], "de");
+    return category || left.name.localeCompare(right.name, "de");
+  });
+
+  elements.customCatalogList.innerHTML = sorted.map((ingredient) => `
+    <div class="catalog-item">
+      <div>
+        <strong>${escapeHtml(ingredient.name)}</strong>
+        <span>${CATEGORY_LABELS[ingredient.category]}${ingredient.category === "fat" ? ` · SAP ${formatNumber(ingredient.sapNaoh, 3)}` : ""}</span>
+      </div>
+      <div class="table-actions">
+        <button type="button" data-action="edit" data-id="${ingredient.id}" class="secondary">Edit</button>
+        <button type="button" data-action="delete" data-id="${ingredient.id}" class="danger">Del</button>
+      </div>
+    </div>
+  `).join("");
+
+  elements.customCatalogList.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.action === "edit") {
+        editCatalogIngredient(button.dataset.id);
+      } else {
+        deleteCatalogIngredient(button.dataset.id);
+      }
+    });
+  });
 }
 
 function saveRecipe() {
@@ -367,6 +452,15 @@ function loadRecipes() {
   }
 }
 
+function loadCustomIngredients() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(CATALOG_KEY) || "[]");
+    return Array.isArray(parsed) ? parsed.map(sanitizeCatalogIngredient) : [];
+  } catch {
+    return [];
+  }
+}
+
 function loadActiveRecipe(savedRecipes) {
   try {
     const parsed = JSON.parse(localStorage.getItem(ACTIVE_KEY) || "null");
@@ -382,6 +476,10 @@ function persistRecipes() {
 
 function persistActive() {
   localStorage.setItem(ACTIVE_KEY, JSON.stringify(recipe));
+}
+
+function persistCustomIngredients() {
+  localStorage.setItem(CATALOG_KEY, JSON.stringify(customIngredients));
 }
 
 function mergeLegacyRecipes(storedRecipes) {
@@ -401,6 +499,45 @@ function savedRecipeSubtitle(item) {
   if (item.madeAt) details.push(item.madeAt);
   if (item.rating && item.rating !== "noch nicht bewertet") details.push(`Note ${item.rating}`);
   return details.join(" · ");
+}
+
+function getCatalogItems() {
+  const legacy = LEGACY_INGREDIENTS.map((item) => ({
+    ...item,
+    id: `legacy-${item.legacyId}`,
+    catalogKey: `legacy:${item.legacyId}`
+  }));
+  const custom = customIngredients.map((item) => ({
+    ...item,
+    catalogKey: `custom:${item.id}`
+  }));
+  return [...legacy, ...custom];
+}
+
+function findCatalogItem(catalogKey) {
+  return getCatalogItems().find((item) => item.catalogKey === catalogKey);
+}
+
+function findCatalogKeyForIngredient(ingredient) {
+  const item = getCatalogItems().find((candidate) =>
+    candidate.category === ingredient.category &&
+    candidate.name === ingredient.name &&
+    round(candidate.sapNaoh, 3) === round(ingredient.sapNaoh, 3)
+  );
+  return item?.catalogKey || "";
+}
+
+function sanitizeCatalogIngredient(ingredient) {
+  const item = sanitizeIngredient({
+    ...ingredient,
+    weight: 0
+  });
+  return {
+    id: ingredient?.id || createId("catalog"),
+    name: item.name,
+    category: item.category,
+    sapNaoh: item.category === "fat" ? item.sapNaoh : 0
+  };
 }
 
 function formatNumber(value, decimals = 2) {

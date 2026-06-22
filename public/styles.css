@@ -180,12 +180,17 @@ td {
 }
 
 .panel-title h2,
+.panel-title h3,
 .summary h3,
 .warnings h3,
 .saved-recipes h3 {
   margin: 0;
   font-size: 1rem;
   line-height: 1.2;
+}
+
+.compact-title {
+  margin-bottom: 10px;
 }
 
 .status-pill {
@@ -265,6 +270,43 @@ td {
 .table-actions button {
   min-height: 32px;
   padding: 0 10px;
+}
+
+.catalog-manager {
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.catalog-form {
+  grid-template-columns: minmax(180px, 1.5fr) minmax(140px, 1fr) minmax(110px, 0.8fr);
+}
+
+.catalog-list {
+  display: grid;
+  gap: 8px;
+}
+
+.catalog-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fbfcfb;
+}
+
+.catalog-item strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.catalog-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 
 .saved-recipes {
@@ -429,7 +471,8 @@ td {
   }
 
   .form-grid.compact,
-  .ingredient-form {
+  .ingredient-form,
+  .catalog-form {
     grid-template-columns: 1fr;
   }
 
@@ -447,6 +490,7 @@ td {
 @media print {
   .toolbar,
   .ingredient-form,
+  .catalog-manager,
   .saved-recipes,
   .table-actions {
     display: none;

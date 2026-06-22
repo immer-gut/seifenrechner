@@ -11,7 +11,7 @@
     <header class="app-header">
       <div>
         <p class="eyebrow">Docker Webstack</p>
-        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.1.1</span></h1>
+        <h1>Seifenrechner <span id="appVersion" class="version-badge">v1.2.0</span></h1>
       </div>
       <nav class="toolbar" aria-label="Werkzeuge">
         <button id="saveRecipe" type="button" title="Rezept speichern">Speichern</button>
@@ -82,42 +82,24 @@
 
       <section class="panel workspace-panel" aria-labelledby="ingredients-heading">
         <div class="panel-title">
-          <h2 id="ingredients-heading">Zutaten</h2>
+          <h2 id="ingredients-heading">Rezeptzutaten</h2>
           <span id="ingredientCount" class="status-pill">0</span>
         </div>
 
         <form id="ingredientForm" class="ingredient-form">
           <input id="ingredientId" type="hidden">
           <label class="catalog-field">
-            Alte Zutat
+            Zutat
             <select id="ingredientPreset">
-              <option value="">Manuell erfassen</option>
-            </select>
-          </label>
-          <label>
-            Name
-            <input id="ingredientName" type="text" required autocomplete="off">
-          </label>
-          <label>
-            Kategorie
-            <select id="ingredientCategory">
-              <option value="fat">Fette & Oele</option>
-              <option value="liquid">Fluessigkeit</option>
-              <option value="fragrance">Duft</option>
-              <option value="color">Farbe</option>
-              <option value="additive">Sonstiges</option>
+              <option value="">Zutat auswaehlen</option>
             </select>
           </label>
           <label>
             Gramm
             <input id="ingredientWeight" type="number" min="0" step="0.1" required>
           </label>
-          <label>
-            SAP NaOH
-            <input id="ingredientSap" type="number" min="0" step="0.001">
-          </label>
           <div class="form-actions">
-            <button type="submit">Zutat speichern</button>
+            <button type="submit">Zum Rezept</button>
             <button id="clearIngredient" type="button" class="secondary">Neu</button>
           </div>
         </form>
@@ -135,6 +117,41 @@
             </thead>
             <tbody id="ingredientsTable"></tbody>
           </table>
+        </div>
+
+        <div class="catalog-manager">
+          <div class="panel-title compact-title">
+            <h3>Zutatenkatalog</h3>
+            <span id="catalogCount" class="status-pill">0</span>
+          </div>
+
+          <form id="catalogForm" class="ingredient-form catalog-form">
+            <input id="catalogIngredientId" type="hidden">
+            <label>
+              Name
+              <input id="catalogIngredientName" type="text" required autocomplete="off">
+            </label>
+            <label>
+              Kategorie
+              <select id="catalogIngredientCategory">
+                <option value="fat">Fette & Oele</option>
+                <option value="liquid">Fluessigkeit</option>
+                <option value="fragrance">Duft</option>
+                <option value="color">Farbe</option>
+                <option value="additive">Sonstiges</option>
+              </select>
+            </label>
+            <label>
+              SAP NaOH
+              <input id="catalogIngredientSap" type="number" min="0" step="0.001">
+            </label>
+            <div class="form-actions">
+              <button type="submit">Zutat speichern</button>
+              <button id="clearCatalogIngredient" type="button" class="secondary">Neu</button>
+            </div>
+          </form>
+
+          <div id="customCatalogList" class="catalog-list"></div>
         </div>
       </section>
 

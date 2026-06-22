@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { calculateRecipe } from "../public/calculator.js";
+import { calculateRecipe, sanitizeIngredient } from "../public/calculator.js";
 import { LEGACY_INGREDIENTS, LEGACY_RECIPES } from "../public/legacy-data.js";
 
 test("calculates NaOH recipe with superfat, water and shrinkage", () => {
@@ -70,6 +70,19 @@ test("warns about single-fat recipes", () => {
 
   assert.equal(result.lyeWithSuperfat, 144.97);
   assert.equal(result.warnings.some((warning) => warning.includes("Nur ein Fett/Oel")), true);
+});
+
+test("keeps catalog references on recipe ingredients", () => {
+  const ingredient = sanitizeIngredient({
+    id: "item-1",
+    catalogKey: "custom:olive",
+    name: "Olivenoel",
+    category: "fat",
+    weight: 100,
+    sapNaoh: 0.134
+  });
+
+  assert.equal(ingredient.catalogKey, "custom:olive");
 });
 
 test("calculates imported legacy recipes close to old exports", () => {
